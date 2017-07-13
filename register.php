@@ -46,6 +46,22 @@
     <!-- test js file -->
     <script src="js/api.jquery-edit.js" type="text/javascript"></script>
 
+
+    <!-- PNotify -->
+    <link href="./allow_me/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="./allow_me/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="./allow_me/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+    <!-- jQuery library -->
+    <script src="js/jquery.min.js"></script>  
+
+    <!-- gmail platform -->
+    <script src="https://apis.google.com/js/api:client.js"></script>
+
+
+    <!-- facebook js sdk library -->
+    <script src="js/facebook.js"></script>
+
     <script src="js/jquery-1.9.1.min7edd.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.3x.min7edd.js" defer></script>
@@ -216,20 +232,16 @@ include("inc/header.php");
 
         <h3 class="subheading">Create an account</h3>
 
-        <form method="post" accept-charset="UTF-8"><input type="hidden" value="create_customer" name="form_type" /><input type="hidden" name="utf8" value="✓" />
+        <form id="register-form">
 
-        <div id="register-form">
+        <input type="hidden" name="from" value="register">
+        <div>
           <div class="control-wrapper">
-            <input type="text" value="" name="name" placeholder="Enter your name" required class="col-sm-10 col-xs-12" />
+            <input type="text" value="" name="fullname" placeholder="Enter your name" required class="col-sm-10 col-xs-12" />
           </div>
-          
           <div class="control-wrapper">
           <p>&nbsp;</p>
             <input type="email" value="" name="email" placeholder="Enter your email" required class="col-sm-10 col-xs-12" />
-          </div>
-          <div class="control-wrapper">
-          <p>&nbsp;</p>
-            <input type="text" value="" name="mobile" placeholder="Enter your Mobile" required class="col-sm-10 col-xs-12" />
           </div>
           <div class="control-wrapper">
           <p>&nbsp;</p>
@@ -240,27 +252,10 @@ include("inc/header.php");
             <input type="password" value="" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required class="col-sm-10 col-xs-12 password" />
           </div>
           <div class="control-wrapper last">
-            <button class="btn btn-default" name="submit" type="submit"><i class="fa fa-user left"></i>Create An Account</button>
+            <button id="create_account" class="btn btn-default" ><i class="fa fa-user left"></i>Create An Account</button>
           </div>
         </div>
         </form>
-<?php
-  include("inc/db.php");
-  if($_POST['submit'])
-  {
-      $getname = $_POST['name'];
-      $getemail = $_POST['email'];
-      $getmobile = $_POST['mobile'];
-      $getpassword = $_POST['password'];
-      $getconpassword = $_POST['confirm_password'];
-
-      $insert = "insert into user_credentials(user_name , user_email  , password, confirm_password) values($getname,$getemail,$getmobile,$getpassword,$getconpassword)";
-      $run = mysqli_query($con , $insert);
-      
-  }
-
-?>
-
 
 
 <script type="text/javascript">
@@ -291,19 +286,18 @@ confirm_password.onkeyup = validatePassword;
         <div id="customer-login" class="content">
           <h3 class="subheading">Already registered?</h3>
 
-          <form method="post" action="https://megashop-theme.myshopify.com/account/login" id="customer_login" accept-charset="UTF-8"><input type="hidden" value="customer_login" name="form_type" /><input type="hidden" name="utf8" value="✓" />
-
-          
+          <form id="customer_login" >
+          <input type="hidden" value="from" name="login" />
 
           <div class="control-wrapper">
             <label for="customer_email">Your Email<span class="req">*</span></label>
-            <input type="email" required name="customer[email]" id="customer_email" class="col-sm-10 col-xs-12" />
+            <input type="email" required name="email" id="customer_email" class="col-sm-10 col-xs-12" />
           </div>
 
           
           <div class="control-wrapper">
             <label for="customer_password">Your Password<span class="req">*</span></label>
-            <input type="password" required name="customer[password]" id="customer_password" class="col-sm-10 col-xs-12 password" />
+            <input type="password" required name="password" id="customer_password" class="col-sm-10 col-xs-12 password" />
           </div>
           
 
@@ -313,7 +307,7 @@ confirm_password.onkeyup = validatePassword;
               <span>or</span>
               <a class="return-store" href="../index.html">Return to Store</a>
             </div>
-            <button class="btn btn-default" type="submit"><i class="fa fa-lock left"></i>Login</button>
+            <button class="btn btn-default"  id="loginBtn" "><i class="fa fa-lock left"></i>Login</button>
           </div>
 
           </form>
@@ -1294,6 +1288,13 @@ confirm_password.onkeyup = validatePassword;
         
       });
     </script>
+
+    <!-- PNotify -->
+    <script src="./allow_me/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="./allow_me/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="./allow_me/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
+    <script src="./js/custom_script.js"></script>
 
   </div>
   
