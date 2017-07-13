@@ -86,7 +86,7 @@
 
         while ($row = $result -> fetch_assoc()) {
 
-            mail($row['admin_email'], "Confirmation Code from C A R D Pine : ". $ranvalue, "Your Confirmation code is : " . $ranvalue . "\r\n \r\n \r\n \r\n Please don't reply to this system generated email.", "From: contact@cardpine.com");
+            mail($row['admin_email'], "Confirmation Code from Kashmir Trend : ". $ranvalue, "Your Confirmation code is : " . $ranvalue . "\r\n \r\n \r\n \r\n Please don't reply to this system generated email.", "From: contact@kashmirtrend.com");
 
         }
 
