@@ -52,22 +52,6 @@ else
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bc.global.scss7edd.css" rel="stylesheet" />
 
-    <!-- PNotify -->
-    <link href="./admin/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
-    <link href="./admin/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
-    <link href="./admin/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
-
-    <!-- jQuery library -->
-    <script src="js/jquery.min.js"></script>  
-
-    <!-- gmail platform -->
-    <script src="https://apis.google.com/js/api:client.js"></script>
-
-
-    <!-- facebook js sdk library -->
-    <script src="js/facebook.js"></script>
-
-
     <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
     <link rel="stylesheet" type="text/css" href="engine1/style.css" />
     <script type="text/javascript" src="engine1/jquery.js"></script>
@@ -106,11 +90,6 @@ else
     <script src="js/bc.global7edd.js" defer></script>
     <script src="js/bc.slider7edd.js"></script>
     <script src="js/bc.script7edd.js"></script>
-
-    <!-- PNotify -->
-    <script src="./admin/vendors/pnotify/dist/pnotify.js"></script>
-    <script src="./admin/vendors/pnotify/dist/pnotify.buttons.js"></script>
-    <script src="./admin/vendors/pnotify/dist/pnotify.nonblock.js"></script>
 
 </head>
 
@@ -303,11 +282,11 @@ else
                                                     <span class="qty-wrapper">
                                                         <span class="qty-inner">
 
-                                                            <span class="qty-up" id="qty-up" title="Increase" data-src="#quantity">
+                                                            <span class="qty-up" title="Increase" data-src="#quantity">
                                                                 <i class="fa fa-plus"></i>
                                                             </span>
 
-                                                            <span class="qty-down" id="qty-down" title="Decrease" data-src="#quantity">
+                                                            <span class="qty-down" title="Decrease" data-src="#quantity">
                                                                 <i class="fa fa-minus"></i>
                                                             </span>
 
@@ -328,13 +307,13 @@ else
                                             </div>
 
                                             <div class="action-button">
-                                                <button  data-id="<?=$get_id?>" id="add-to-cart" class="btn btn-default add_toCart select-options" type="button">Add to cart</button>
+                                                <button id="add-to-cart" class="add-to-cart btn btn-default" type="button">Add to cart</button>
                                             </div>
 
                                         </div>
                                     </form>
 
-                                    <button data-id="<?= $get_id?>" type="button" class="btn add-to-wishlist add-to-wishlist" title="Add to wishlist"><i class="fa fa-heart"></i>Add to wishlist</button>
+                                    <button type="button" class="btn add-to-wishlist" onclick="window.location='../account/login.php'" title="Add to wishlist"><i class="fa fa-heart"></i>Add to wishlist</button>
 
                                 </div>
 
@@ -436,7 +415,7 @@ else
 <div class="product-button">
 
         <div class="add-cart-button">
-            <a data-id="<?=$get_id?>" id="add-to-cart" class="btn btn-default add_toCart select-options"><i class="fa fa-shopping-cart"></i><span class="hidden-desktop">Select options</span></a>
+            <a href="products/golddax-product-example.html" class="btn btn-default select-options" title="Select options"><i class="fa fa-shopping-cart"></i><span class="hidden-desktop">Select options</span></a>
         </div>
 
         <div data-handle="golddax-product-example" data-target="#quick-shop-popup" onclick="get_item_id(<?php echo "$get_id";?>);" class="quick_shop quick-shop-button btn-default hidden-sm hidden-xs" data-toggle="modal" title="Quick View">
@@ -469,7 +448,7 @@ else
 </script>
 
         <div class="product-wishlist">
-            <button data-id="<?=$get_id?>" type="button" class="btn btn-default add-to-wishlist" title="Add to wishlist"><i class="fa fa-heart"></i><span class="hidden-desktop">Add to wishlist</span></button>
+            <button type="button" class="btn btn-default add-to-wishlist" onclick="window.location='account/login.html'" title="Add to wishlist"><i class="fa fa-heart"></i><span class="hidden-desktop">Add to wishlist</span></button>
         </div>
 
     </div>
@@ -598,7 +577,7 @@ else
     </div>
 
 </body>
-<script src="./js/custom_script.js"></script>
+
 </html>
 <?php
 }

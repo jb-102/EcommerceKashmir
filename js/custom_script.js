@@ -29,18 +29,15 @@ $(document).ready(function() {
 
 $('.add_toCart').click(function() {
 
-  alert('hey');
   var quan;
   var loc = window.location.pathname;
 
   if(loc.includes("SingleProductDetails"))
   {
-    alert('hey if');
-    quan = $('#quantity').val();
+    quan = $('#choose_quantity').val();
   }
   else
   {
-    alert('hey else');
     quan = 1;
   }
 
@@ -49,8 +46,6 @@ $('.add_toCart').click(function() {
 
   if (isNaN(quan) || $.trim(quan) == '' || $.trim(quan) < 1) 
   {
-    alert('hey isNaN')
-    alert('quantity:'+quan)
       new PNotify({
         title: 'Status',
         text: 'Quantity should be a valid number.',
@@ -60,7 +55,7 @@ $('.add_toCart').click(function() {
   }
   else
   {
-    alert('id = '+id);
+    alert(id);
     if ($.trim(id) != '' || id != null) {
       $.post(session_url, {user:"check_session"}).done(function (session_data) {
 
@@ -157,41 +152,81 @@ $('.add-to-wishlist').click(function() {
 $("#create_account").click(function(){
 
 
+  alert('hey');
   var formData = $("#register-form").serializeArray();
   $.post(url, formData).done(function (data) {
 
-    if (data == 'success') 
+    if ($.trim(data) == 'success') 
     {
       $.post(session_url, {user:"main",email:formData[1].value}).done(function (session_data) {
 
-        if (session_data == 'success') 
+        if ($.trim(session_data) == 'success') 
         {
           window.location.reload();
         }
         else
         {
-          alert(session_data);
+          new PNotify({
+            title: 'Status Sessions',
+            text: session_data,
+            type: 'error',
+            styling: 'bootstrap3'
+          });
         }
       });
     }
     else
     {
-      $("#error_message_register").text(data); 
-     $("#error_message_register").slideDown();
+      new PNotify({
+        title: 'Status',
+        text: data,
+        type: 'error',
+        styling: 'bootstrap3'
+      });
     }
 
   });
 });
 
-$("#qty-up").click(function (){
-  var val = $("#quantity").val();
-  val++;
-  $("#quantity").val(val);
-});
 
-$("#qty-down").click(function (){
-  var val = $("#quantity").val();
-  val--;
-  $("#quantity").val(val);
+$("#loginBtn").click(function(){
+
+
+  alert('hey');
+  var formData = $("#customer_login-form").serializeArray();
+  $.post(url, formData).done(function (data) {
+
+    if ($.trim(data) == 'success') 
+    {
+      $.post(session_url, {user:"main",email:formData[1].value}).done(function (session_data) {
+
+        if ($.trim(session_data) == 'success') 
+        {
+          window.location.reload();
+        }
+        else
+        {
+          new PNotify({
+            title: 'Status Sessions',
+            text: session_data,
+            type: 'error',
+            styling: 'bootstrap3'
+          });
+        }
+      });
+    }
+    else
+    {
+      new PNotify({
+        title: 'Status',
+        text: data,
+        type: 'error',
+        styling: 'bootstrap3'
+      });
+    }
+
+  });
+
+
 });
 

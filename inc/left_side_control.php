@@ -13,16 +13,17 @@
             <?php
                 include("inc/db.php");
                     $getcategory = "select * from main_categories";
-                    $run3 = mysqli_query($con , $getcategory);
+                    $run = mysqli_query($con , $getcategory);
 
-                    while ($row = mysqli_fetch_array($run3)) 
+                    while ($row = mysqli_fetch_array($run)) 
                     {
+                        $get_name =$row['main_cat_name'];
                         $maincategory = $row['main_cat_name'];
                     
                     ?>           
                             <li class="dropdown mega-menu">
 
-                                        <a href="products.php?var_name=<?php echo "$maincategory";?>" class="dropdown-link">
+                                        <a href="products.php?var_name=<?php echo "$get_name";?>" class="dropdown-link">
                                                 <span><?php echo "$maincategory" ?></span>
                                         </a>
             
@@ -52,47 +53,6 @@
                                                                                   
                                     
                                     <div class="dropdown mega-sub-link">
-                                        <a href="products.php?var_name_cat=<?php echo "$subcategoryname";?>" class="dropdown-link">
-                                            <span><?php echo "$subcategoryname";?></span>
-                                        </a>
-
-                                        <span class="expand">
-                                            <i class="fa fa-angle-right hidden-xs hidden-sm"></i>
-                                            <i class="fa fa-plus visible-xs visible-sm"></i>
-                                        </span>
-
-                                        <ul class="dropdown-menu dropdown-menu-sub">
-
-                                        <?php
-                                            $getproducts = "select * from sub_category where sub_cat_parent='$subcategoryname'";
-                                            $run1 = mysqli_query($con , $getproducts);
-
-
-                                             while ($row = mysqli_fetch_array($run1)) {
-                                                $productname = $row['sub_cat_name'];
-
-
-                                        ?>
-
-                                            <li><a href="products.php"><?php echo "$productname"; ?></a></li>
-
-                                        <?php
-                                            }
-                                        ?>
-
-
-
-                                        </ul>
-                                 </div>
-
-
-                                 <?php
-                                    if($row=mysqli_fetch_array($run)){
-                                        $subcategoryname = $row['cat_name'];
-
-
-                                 ?>
-                                 <div class="dropdown mega-sub-link">
                                         <a href="index.html" class="dropdown-link">
                                             <span><?php echo "$subcategoryname";?></span>
                                         </a>
@@ -104,32 +64,27 @@
 
                                         <ul class="dropdown-menu dropdown-menu-sub">
 
-                                        <?php
-                                            $getproducts = "select * from sub_category where sub_cat_parent='$subcategoryname'";
-                                            $run2 = mysqli_query($con , $getproducts);
+<?php
+    $getproducts = "select * from products where item_sub_category='$subcategoryname'";
+    $run = mysqli_query($con , $getproducts);
+
+    while ($row = mysqli_fetch_array($run)) {
+        $productname = $run['item_name'];
 
 
-                                             while ($row = mysqli_fetch_array($run2)) {
-                                                $productname = $row['sub_cat_name'];
-
-
-                                        ?>
+?>
 
                                             <li><a href="products.php"><?php echo "$productname"; ?></a></li>
 
-                                        <?php
-
-                                            }
-                                        ?>
+<?php
+    }
+?>
 
 
 
                                         </ul>
                                  </div>
-                                <?php
-                                      }
-
-                                ?>
+      
 
                         </div>
                                 <?php
@@ -160,7 +115,6 @@
                     <div id="sb-best-seller" class="sb-wrapper hidden-sm hidden-xs">
 
                         <h4 class="sb-title">Popular Products</h4>
-                        <div class="sb-best-seller">
 
 
 <?php
@@ -177,6 +131,7 @@
         
 ?>
 
+                        <div class="sb-best-seller">
                             <div class="row">
                                 <div class="sb-product-head col-sm-4 col-xs-4">
                                     <a href="SingleProductDetails.php?var_id=<?php echo "$productid"; ?>">
@@ -200,11 +155,11 @@
                                     </div>
                                 </div>                                
                             </div>
+                        </div>
 
 <?php
     }
 ?>
-                        </div>
 
                     </div>
 
@@ -214,47 +169,32 @@
 
                     <div id="sb-new-product" class="sb-wrapper hidden-sm hidden-xs">
 
-                        <h4 class="sb-title">Kashmir Arts</h4>
+                        <h4 class="sb-title">New Products</h4>
 
                         <div class="sb-new-product">
 
-<?php
-	include("inc/db.php");
-	$getkashmirart = "select * from products limit 4";
-	$run = mysqli_query($con , $getkashmirart);
-	while ($row = mysqli_fetch_array($run)) {
-		$getid=$row['item_id'];
-		$getimage = $row['item_ist_view'];
-		$gettitle = $row['item_name'];
-		$getprice = $row['item_price'];
-
-?>
                             <div class="row">
                                 <div class="sb-product-head col-sm-4 col-xs-4">
-                                    <a href="SingleProductDetails.php">
-                                        <img src="admin/images/<?php echo "$getimage";?>" alt="product image" />
+                                    <a href="products/condimentum-turpis.html">
+                                        <img src="cdn.shopify.com/s/files/1/1009/3778/products/18_1024x1024_1107cded-b35d-477d-90d3-2aab0d24149a_small1a38.jpg?v=1447414867" alt="Kinla Product Sample" />
                                     </a>
                                 </div>
                                 <div class="sb-product-content col-sm-8 col-xs-8">
                                     <div class="bp-content-inner">
-                                        <a href="SingleProductDetails.php?var_id=<?php echo "$getid";?>"><?=$gettitle?></a>
+                                        <a href="products/condimentum-turpis.html">Kinla Product Sample</a>
                                         <div class="sb-price">
 
 
-                                            <span class="price-sale"><span class='money'><?=$getprice?></span></span>
+                                            <span class="price-sale"><span class='money'>$150.00</span></span>
+                                            <span class="price-compare"> <span class='money'>$229.00</span></span>
+
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-<?php
-	}
-?>
-
 
                         </div>
-
-
                     </div>
 
                     <!-- End Best Seller -->

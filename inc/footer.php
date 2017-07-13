@@ -81,43 +81,27 @@
 
 
 
-                <div id="widget-newsletter" class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="footer-block">
+                            <div id="widget-newsletter" class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="footer-block">
 
-                        <h4>Newsletter</h4>
+                                    <h4>Newsletter</h4>
 
-                        <ul class="list-links list-unstyled">
-
-
-                            <li>Subscribe to our newsletter and receive the latest offers, discounts and updates</li>
-
-                            <li>
+                                    <ul class="list-links list-unstyled">
 
 
-                                <?php
-                                include("inc/db.php");
-                                if(isset($_POST['submit'])){
-                                    $getemail = $_POST['email'];
-                                    $insert = "INSERT INTO subscription (sub_email) VALUES('$getemail')";
-                                    $run = mysqli_query($con , $insert);
-                                    if($run){
-                                        echo "You have successfully subscribed to our Newsletter";
-                                    }
+                                        <li>Subscribe to our newsletter and receive the latest offers, discounts and updates</li>
 
 
-                                }
+                                        <li>
+                                            <form action="http:/itcode.us10.list-manage.com/subscribe/post?u=55ec8b9611a3d9c0ad6f3fc62&amp;id=1cbb85b057" method="post" id="mc-embedded-subscribe-form" class="form-inline form-subscribe" name="mc-embedded-subscribe-form" target="_blank">
+                                                <input class="form-control" type="email" required placeholder="Enter your e-mail" name="EMAIL" id="email-input" />
+                                                <button id="email-submit" type="submit" title="Subscibe" class="btn btn-default btn-subscribe">Subscribe</button>
+                                            </form>
+                                        </li>
 
-                                ?>
-
-                                <form action="" method="post" id="mc-embedded-subscribe-form" class="form-inline form-subscribe" name="mc-embedded-subscribe-form">
-                                    <input class="form-control" type="email" name="email" required placeholder="Enter your e-mail" id="email-input" />
-                                    <button id="email-submit" type="submit" name="submit" title="Subscibe" class="btn btn-default btn-subscribe">Subscribe</button>
-                                </form>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
+                                    </ul>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

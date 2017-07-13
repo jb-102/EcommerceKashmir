@@ -108,7 +108,6 @@ include("inc/db.php");
 <!-- Begin Loader -->
 <!-- End Loader -->
 <div id="widget-social">
-
 <ul class="widget-social">
 
     <li>
@@ -393,7 +392,7 @@ include("inc/header.php");
 <div class="product-button">
 
         <div class="add-cart-button">
-            <a data-id="<?=$productid?>" class="btn btn-default add_toCart select-options" title="Select options"><i class="fa fa-shopping-cart"></i><span class="hidden-desktop">Select options</span></a>
+            <a data-id="<?= $productid?>" class="btn btn-default add_toCart select-options" title="Select options"><i class="fa fa-shopping-cart"></i><span class="hidden-desktop">Select options</span></a>
         </div>
 
         <div data-handle="golddax-product-example" data-target="#quick-shop-popup" onclick="get_item_id(<?php echo "$get_id";?>);" class="quick_shop quick-shop-button btn-default hidden-sm hidden-xs" data-toggle="modal" title="Quick View">
@@ -557,32 +556,12 @@ include("inc/footer.php");
             <span>Put in some details about your compaign and list the reasons to sign up.<br> Don't forget the final <span>call to action</span></span>
         </div>
 
-        <form id="mc-form" action="" method="post" name="mc-embedded-subscribe-form">
+
+        <form id="mc-form" action="" method="post" name="mc-embedded-subscribe-form" target="_blank">
             <i class="fa fa-envelope"></i>
-            <input id="mc-email" class="input-block-level" type="email" name="email" placeholder="Your email..." required />
-            <button class="btn btn-default" name="submit" type="submit">Submit</button>
+            <input id="mc-email" class="input-block-level" type="email" name="EMAIL" placeholder="Your email..." required />
+            <button class="btn btn-default" type="submit">Submit</button>
         </form>
-        
-<?php
-    if(isset($_POST['submit']))
-    {
-        $getemail = $_POST['email'];
-        $insert = "INSERT into subscription (sub_email) VALUES('$getemail')";
-        $run = mysqli_query($con , $insert);
-
-        if($run)
-        {
-            echo "
-                <script>
-                    alert('You have successfully subcribe to our Newsletter');
-                </script>
-            ";
-        }
-
-    }
-
-
-?>
     </div>
 </div>
 
