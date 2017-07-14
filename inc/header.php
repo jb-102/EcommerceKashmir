@@ -101,21 +101,23 @@
 
                                 </a>
                             </div>
+      
+        <div class="searchbox col-sm-4">
+            <form id="search" action="product_search.php" class="navbar-form search" method="POST">
+                <input id="input-ajax-search" type="text" name="search_box" class="form-control" placeholder="Search" autocomplete="off" />
+                <!-- <a name="search_button" >helo</a> -->
+                <button type="submit" name="SE" class="btn btn-submit btn-default"></button>
 
-                            <div class="searchbox col-sm-4">
-                                <form id="search" class="navbar-form search" action="https://egashop-theme.myshopify.com/search" method="get">
-                                    <input type="hidden" name="type" value="product" />
-                                    <input id="input-ajax-search" type="text" name="q" class="form-control" placeholder="Search" autocomplete="off" />
-                                    <button type="submit" class="btn btn-submit btn-default"></button>
-                                </form>
-                                <div id="result-ajax-search" class="hidden-sm hidden-xs"><ul class="list-unstyled search-results"></ul></div>
-                            </div>
+            </form>               
+          
+
+                        <div id="result-ajax-search" class="hidden-sm hidden-xs"><ul class="list-unstyled search-results"></ul></div>
+                    </div>
+
 
 
                             <div class="customer-links col-sm-4">
                                 <ul class="list-inline">
-
-
                                     <li>
                                         <a href="login.php" id="customer_login_link" title="Login">
                                             <span><i class="fa fa-sign-in left"></i>Sign In</span>
@@ -141,7 +143,7 @@
                         <div class="row">
                             <div class="logo-stick col-md-3 hidden-sm hidden-xs">
                                 <a href="index.php" title="Megashop Theme" class="logo-site">
-                                    <img class="logo" src="../cdn.shopify.com/s/files/1/1009/3778/t/2/assets/sticky_logo7edd.png?12416928266873382738" alt="Megashop Theme" />
+                                    <img class="logo" src="" alt="kashmir trend" />
                                 </a>
                             </div>
                             <div class="navbar navbar-responsive-menu visible-sm visible-xs">
