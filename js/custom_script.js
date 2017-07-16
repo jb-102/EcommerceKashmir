@@ -21,11 +21,96 @@ $(document).ready(function() {
 
         });
 
-    }
+  }
+
+  var auth2;
+
+  gapi.load('auth2', function(){
+    // Retrieve the singleton for the GoogleAuth library and set up the client.
+    auth2 = gapi.auth2.init({
+      client_id: '1011628870832-pqdk605vshh3ftsf1ifdli1nthiosmlp.apps.googleusercontent.com',
+      cookiepolicy: 'single_host_origin',
+    });
+    attachSignin(document.getElementById('gmail_btn'));
+  });
+
+
+  function attachSignin(element) {
+
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+
+          var profile = googleUser.getBasicProfile();
+          var user_name = profile.getName();
+          var user_email = profile.getEmail();
+          
+
+          $.post(url, {from:"gmail",fullname:user_name,email:user_email}).done(function (data) {
+
+            
+
+              if (data == 'success') 
+              {
+                $.post(session_url, {user:"gmail",email:user_email}).done(function (session_data) {
+
+                  if (session_data == 'success') 
+                  {
+                    window.location.reload();
+                  }
+                  else
+                  {
+                    alert(session_data);
+                  }
+                });       
+              }
+              else
+              {
+               $("#error_message_login").text(data); 
+               $("#error_message_login").slideDown();
+              }
+
+            });
+          
+        }, function(error) {
+          alert(JSON.stringify(error, undefined, 2));
+        });
+  }
 
 });
 
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      FB.api('/me?fields=id,name,email', function(response) {
 
+        $.post(url, {from:"facebook",fullname:response.name,email:response.email}).done(function (data) {
+
+            if (data == 'success') 
+            {
+              $.post(session_url, {user:"facebook",email:response.email}).done(function (session_data) {
+
+                if (session_data == 'success') 
+                {
+                  window.location.reload();
+                }
+                else
+                {
+                  alert(session_data);
+                }
+              }); 
+            }
+            else
+            {
+             $("#error_message_login").text(data); 
+             $("#error_message_login").slideDown();
+            }
+
+          });
+      });
+
+    }
+  });
+}
 
 $('.add_toCart').click(function() {
 
