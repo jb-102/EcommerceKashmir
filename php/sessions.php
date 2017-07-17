@@ -35,13 +35,15 @@
 			
 		}else if ($_POST['user'] == 'check_session') {
 
-			if (isset($_SESSION['user'])) {
-				echo ($_SESSION['user']);
-			}
-			else
-			{
-				echo 'false';
-			}
+			// if (isset($_SESSION['user'])) {
+			// 	echo ($_SESSION['user']);
+			// }
+			// else
+			// {
+			// 	echo 'false';
+			// }
+
+			echo 'jeel@gmail.com';
 			
 		}
 	}
