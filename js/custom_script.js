@@ -21,26 +21,108 @@ $(document).ready(function() {
 
         });
 
-    }
+  }
+
+  var auth2;
+
+  gapi.load('auth2', function(){
+    // Retrieve the singleton for the GoogleAuth library and set up the client.
+    auth2 = gapi.auth2.init({
+      client_id: '1011628870832-pqdk605vshh3ftsf1ifdli1nthiosmlp.apps.googleusercontent.com',
+      cookiepolicy: 'single_host_origin',
+    });
+    attachSignin(document.getElementById('gmail_btn'));
+  });
+
+
+  function attachSignin(element) {
+
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+
+          var profile = googleUser.getBasicProfile();
+          var user_name = profile.getName();
+          var user_email = profile.getEmail();
+          
+
+          $.post(url, {from:"gmail",fullname:user_name,email:user_email}).done(function (data) {
+
+            
+
+              if (data == 'success') 
+              {
+                $.post(session_url, {user:"gmail",email:user_email}).done(function (session_data) {
+
+                  if (session_data == 'success') 
+                  {
+                    window.location.reload();
+                  }
+                  else
+                  {
+                    alert(session_data);
+                  }
+                });       
+              }
+              else
+              {
+               $("#error_message_login").text(data); 
+               $("#error_message_login").slideDown();
+              }
+
+            });
+          
+        }, function(error) {
+          alert(JSON.stringify(error, undefined, 2));
+        });
+  }
 
 });
 
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      FB.api('/me?fields=id,name,email', function(response) {
 
+        $.post(url, {from:"facebook",fullname:response.name,email:response.email}).done(function (data) {
+
+            if (data == 'success') 
+            {
+              $.post(session_url, {user:"facebook",email:response.email}).done(function (session_data) {
+
+                if (session_data == 'success') 
+                {
+                  window.location.reload();
+                }
+                else
+                {
+                  alert(session_data);
+                }
+              }); 
+            }
+            else
+            {
+             $("#error_message_login").text(data); 
+             $("#error_message_login").slideDown();
+            }
+
+          });
+      });
+
+    }
+  });
+}
 
 $('.add_toCart').click(function() {
 
-  alert('hey');
   var quan;
   var loc = window.location.pathname;
 
   if(loc.includes("SingleProductDetails"))
   {
-    alert('hey if');
     quan = $('#quantity').val();
   }
   else
   {
-    alert('hey else');
     quan = 1;
   }
 
@@ -49,8 +131,6 @@ $('.add_toCart').click(function() {
 
   if (isNaN(quan) || $.trim(quan) == '' || $.trim(quan) < 1) 
   {
-    alert('hey isNaN')
-    alert('quantity:'+quan)
       new PNotify({
         title: 'Status',
         text: 'Quantity should be a valid number.',
@@ -60,7 +140,6 @@ $('.add_toCart').click(function() {
   }
   else
   {
-    alert('id = '+id);
     if ($.trim(id) != '' || id != null) {
       $.post(session_url, {user:"check_session"}).done(function (session_data) {
 
@@ -90,7 +169,7 @@ $('.add_toCart').click(function() {
         }
         else
         {
-          $('#login-modal').modal('show');
+          window.location.href = "register.php";
         }
       }); 
     }
@@ -137,7 +216,7 @@ $('.add-to-wishlist').click(function() {
       }
       else
       {
-        $('#login-modal').modal('show');
+        window.location.href = "register.php";
       }
     }); 
   }
@@ -192,5 +271,138 @@ $("#qty-up").click(function (){
 $("#qty-down").click(function (){
   var val = $("#quantity").val();
   val--;
+  if(val<0)
+    val = 0
   $("#quantity").val(val);
 });
+<<<<<<< HEAD
+=======
+
+$(".qty-up-cart").click(function (){
+  var id = $(this).data('id');
+  var val = $("#quantity_"+id).val();
+  val++;
+  $.post(session_url, {user:"check_session"}).done(function (session_data) {
+
+    if (session_data != 'false') 
+    {
+
+        $.post(cart_url, {action:'update',item_id:id,total_quantity:val,user_email:$.trim(session_data)}).done(function (data) {
+
+          if ($.trim(data) == 'success') 
+          {
+            $("#quantity_"+id).val(val);
+            var productPrice = $("#product_price_"+id).text().substring(1);
+            var totalPrice = val * productPrice;
+            $("#product_total_"+id).text(totalPrice);
+            var subTotal = $("#subTotal").text();
+            subTotal = parseInt(subTotal) + parseInt(productPrice);
+            $("#subTotal").text(subTotal);
+          }
+          else
+          {
+            new PNotify({
+              title: 'Status',
+              text: "Something went wrong.",
+              type: 'error',
+              styling: 'bootstrap3'
+            });
+          }
+
+        });      
+    }
+    else
+    {
+      window.location.href = "register.php";
+    }
+  });
+  
+});
+
+$(".qty-down-cart").click(function (){
+  var id = $(this).data('id');
+  var val = $("#quantity_"+id).val();
+  val--;
+  if(val<0)
+    val = 0
+  $.post(session_url, {user:"check_session"}).done(function (session_data) {
+
+    if (session_data != 'false') 
+    {
+
+        $.post(cart_url, {action:'update',item_id:id,total_quantity:val,user_email:$.trim(session_data)}).done(function (data) {
+
+          if ($.trim(data) == 'success') 
+          {
+            $("#quantity_"+id).val(val);
+            var productPrice = $("#product_price_"+id).text().substring(1);
+            var totalPrice = val * productPrice;
+            $("#product_total_"+id).text(totalPrice);
+            var subTotal = $("#subTotal").text();
+            subTotal = parseInt(subTotal) - parseInt(productPrice);
+            if (subTotal < 0)
+              subTotal = 0
+            $("#subTotal").text(subTotal);
+          }
+          else
+          {
+            new PNotify({
+              title: 'Status',
+              text: "Something went wrong.",
+              type: 'error',
+              styling: 'bootstrap3'
+            });
+          }
+
+        });      
+    }
+    else
+    {
+      window.location.href = "register.php";
+    }
+  }); 
+  
+});
+
+
+$(".remove_from_cart").click(function (){
+  var id = $(this).data('id');
+  $.post(session_url, {user:"check_session"}).done(function (session_data) {
+
+    if (session_data != 'false') 
+    {
+
+        $.post(cart_url, {action:'remove',item_id:id,user_email:$.trim(session_data)}).done(function (data) {
+
+          if ($.trim(data) == 'success') 
+          {
+            var totalPrice = $("#product_total_"+id).text();
+            var subTotal = $("#subTotal").text();
+            subTotal = parseInt(subTotal) - parseInt(totalPrice);
+            if (subTotal < 0)
+              subTotal = 0
+            $("#subTotal").text(subTotal);
+            $("#cart_row_"+id).remove();
+            if (subTotal = 0)
+              window.location.href = "index.php"
+          }
+          else
+          {
+            new PNotify({
+              title: 'Status',
+              text: "Something went wrong.",
+              type: 'error',
+              styling: 'bootstrap3'
+            });
+          }
+
+        });      
+    }
+    else
+    {
+      window.location.href = "register.php";
+    }
+  });
+  
+});
+

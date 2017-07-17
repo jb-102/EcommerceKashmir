@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <!--[if IE 8]><html lang="en" class="ie8 js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="js"> <!--<![endif]-->
 
@@ -57,7 +57,6 @@
 
     <!-- gmail platform -->
     <script src="https://apis.google.com/js/api:client.js"></script>
-
 
     <!-- facebook js sdk library -->
     <script src="js/facebook.js"></script>
@@ -256,25 +255,6 @@ include("inc/header.php");
           </div>
         </div>
         </form>
-
-
-<script type="text/javascript">
-  
-var password = document.getElementById("password")
-  , confirm_password = document.getElementById("confirm_password");
-
-function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
-    confirm_password.setCustomValidity('');
-  }
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-
-</script>
 
         
       </div>
