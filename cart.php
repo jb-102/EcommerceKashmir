@@ -247,7 +247,7 @@ include("inc/header.php");
               <td class="item-qty">
                 
                 <div class="quantity">
-                        <input data="<?php echo ($row['item_id']);?>" type="text" value="<?="$get_quantity"?>" id="quantity" class="item-quantity" name="quantity" />
+                        <input type="text" value="<?="$get_quantity"?>" id="quantity" class="item-quantity" name="quantity" />
                         <span class="qty-wrapper">
                             <span class="qty-inner">
 
@@ -310,8 +310,8 @@ $increment++ ;
               <div class="total-price">Subtotal: <span rv-html="cart.total_price | money"><span class="money" data-currency-usd="$2,025.00" data-currency="USD">$2,025.00</span></span></div>
               <p>Shipping &amp; taxes calculated at checkout</p>
               <div class="cart-action">
-                <button class="btn btn-default" type="submit" name="checkout">Checkout</button>
-                <a href="/collections/all"><i class="fa fa-chevron-left left"></i>Continue Shopping</a>
+                <a href="checkout.php" style="color: white;background-color: #2ecc71;border-color: #ccc;width:164px;margin-bottom: 2px;">Checkout<i class="fa fa-chevron-right right"></i></a>
+                <a href="index.php"><i class="fa fa-chevron-left left"></i>Continue Shopping</a>
               </div>
             </div>
           </div>
@@ -322,7 +322,13 @@ $increment++ ;
     </form>
 
 
+<script type="text/javascript">
+    
+function checkout(){
+    window.location = window.location.href.replace("cart.php","checkout.php");
+}
 
+</script>
 
                                                 </div>
 

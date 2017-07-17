@@ -194,4 +194,3 @@ $("#qty-down").click(function (){
   val--;
   $("#quantity").val(val);
 });
-
