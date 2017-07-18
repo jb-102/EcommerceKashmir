@@ -1,5 +1,4 @@
 ﻿
-
 <!doctype html>
 <!--[if IE 8]><html lang="en" class="ie8 js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
@@ -225,7 +224,6 @@ include("inc/header.php");
 		
 		$get_id = $row['item_id'];
 		$get_quantity = $row['total_quantity'];
-
 	$get_product_info ="select * from products where item_id ='$get_id'";
 	$run1 = mysqli_query($con , $get_product_info);
 	$row1 = mysqli_fetch_array($run1); 
@@ -263,11 +261,7 @@ include("inc/header.php");
               <td class="item-qty">
                 
                 <div class="quantity">
-
-                        <input type="text" value="<?="$get_quantity"?>" id="quantity" class="item-quantity" name="quantity" />
-
                         <input data="<?php echo ($row['item_id']);?>" type="text" value="<?="$get_quantity"?>" id="quantity_<?=$get_id?>" class="item-quantity" name="quantity" />
-
                         <span class="qty-wrapper">
                             <span class="qty-inner">
 
@@ -285,7 +279,7 @@ include("inc/header.php");
 
               </td>
 
-          <td class="item-total"><span class="money" data-currency-usd="$675.00"  data-currency="USD">&#8377;<span id="product_total_<?=$get_id?>"><?="$product_total" ; ?></span></span></td>
+              <td class="item-total"><span class="money" data-currency-usd="$675.00"  data-currency="USD">&#8377;<span id="product_total_<?=$get_id?>"><?="$product_total" ; ?></span></span></td>
               
             </tr>
 
@@ -308,8 +302,8 @@ $increment++;
               <div class="total-price">Subtotal: <span class="money" data-currency-usd="$2,025.00" data-currency="USD">&#8377;<span id="subTotal"><?=$subTotal?></span></span></div>
               <p>Shipping &amp; taxes calculated at checkout</p>
               <div class="cart-action">
-                <a href="checkout.php" style="color: white;background-color: #2ecc71;border-color: #ccc;width:164px;margin-bottom: 2px;">Checkout<i class="fa fa-chevron-right right"></i></a>
-                <a href="index.php"><i class="fa fa-chevron-left left"></i>Continue Shopping</a>
+                <button class="btn btn-default" type="submit" name="checkout">Checkout</button>
+                <a href="/collections/all"><i class="fa fa-chevron-left left"></i>Continue Shopping</a>
               </div>
             </div>
           </div>
@@ -320,13 +314,7 @@ $increment++;
     </form>
 
 
-<script type="text/javascript">
-    
-function checkout(){
-    window.location = window.location.href.replace("cart.php","checkout.php");
-}
 
-</script>
 
                                                 </div>
 

@@ -275,8 +275,7 @@ $("#qty-down").click(function (){
     val = 0
   $("#quantity").val(val);
 });
-<<<<<<< HEAD
-=======
+
 
 $(".qty-up-cart").click(function (){
   var id = $(this).data('id');
@@ -405,4 +404,5 @@ $(".remove_from_cart").click(function (){
   });
   
 });
+
 
