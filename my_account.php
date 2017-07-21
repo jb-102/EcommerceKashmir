@@ -36,25 +36,6 @@
     <link href="css/bc.global.scss7edd.css" rel="stylesheet" />
 
 
-    <!-- Bootstrap -->
-    <link href="wizard/css/bootstrap.css" rel="stylesheet">   
-    <!-- SmartMenus jQuery Bootstrap Addon CSS -->
-    <link href="wizard/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
-    <!-- Product view slider -->
-    <link rel="stylesheet" type="text/css" href="wizard/css/jquery.simpleLens.css">    
-    <!-- slick slider -->
-    <link rel="stylesheet" type="text/css" href="css/slick.css">
-    <!-- price picker slider -->
-    <link rel="stylesheet" type="text/css" href="css/nouislider.css">
-    <!-- Theme color -->
-    <link id="switcher" href="css/theme-color/lite-blue-theme.css" rel="stylesheet">
-
-        <!-- time picker -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.css">
-
-    <!-- bootstrap-daterangepicker -->
-    <link href="./allow_me/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
     <!-- Main style sheet -->
     <link href="wizard/css/style.css" rel="stylesheet">  
 
@@ -62,9 +43,9 @@
     <link href="wizard/css/mystyle.css" rel="stylesheet">
 
     <!-- PNotify -->
-    <link href="./allow_me/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
-    <link href="./allow_me/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
-    <link href="./allow_me/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+    <link href="./admin/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="./admin/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="./admin/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
     <!-- jQuery library -->
     <script src="wizard/js/jquery.min.js"></script>  
@@ -417,50 +398,20 @@
   </div>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="./allow_me/vendors/bootstrap/dist/js/bootstrap.min.js"></script>  
-
-  <!-- SmartMenus jQuery plugin -->
-  <script type="text/javascript" src="wizard/js/jquery.smartmenus.js"></script>
-
-  <!-- SmartMenus jQuery Bootstrap Addon -->
-  <script type="text/javascript" src="wizard/js/jquery.smartmenus.bootstrap.js"></script>  
-
-  <!-- Product view slider -->
-  <script type="text/javascript" src="wizard/js/jquery.simpleGallery.js"></script>
-  <script type="text/javascript" src="wizard/js/jquery.simpleLens.js"></script>
-
-  <!-- slick slider -->
-  <script type="text/javascript" src="wizard/js/slick.js"></script>
-
-  <!-- Price picker slider -->
-  <script type="text/javascript" src="wizard/js/nouislider.js"></script>
-  
-  <!-- Custom js -->
-  <script src="wizard/js/custom.js"></script> 
-
-  <!-- Parsley -->
-  <script src="allow_me/vendors/parsleyjs/dist/parsley.min.js"></script>
-
-    <!-- time picker -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.js"></script>
-
-  <!-- bootstrap-daterangepicker -->
-  <script src="./allow_me/vendors/moment/min/moment.min.js"></script>
-  <script src="./allow_me/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
   <!-- PNotify -->
-  <script src="./allow_me/vendors/pnotify/dist/pnotify.js"></script>
-  <script src="./allow_me/vendors/pnotify/dist/pnotify.buttons.js"></script>
-  <script src="./allow_me/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+  <script src="./admin/vendors/pnotify/dist/pnotify.js"></script>
+  <script src="./admin/vendors/pnotify/dist/pnotify.buttons.js"></script>
+  <script src="./admin/vendors/pnotify/dist/pnotify.nonblock.js"></script>
 
-  <!-- timer script -->
-  <script type="text/javascript" src="wizard/js/timer.jquery.js"></script>
+    <!-- Parsley -->
+  <script src="admin/vendors/parsleyjs/dist/parsley.min.js"></script>
 
   <!-- custom script -->
-  <script type="text/javascript" src="wizard/js/my_script.js"></script>
+  <script type="text/javascript" src="./js/custom_script.js"></script>
 
   <!-- jQuery Smart Wizard -->
-  <script src="wizard/js/jquery.smartWizard.js"></script>
+  <script src="./js/jquery.smartWizardAccount.js"></script>
 
   </body>
 </html>

@@ -38,7 +38,7 @@ $(document).ready(function() {
 
   }
 
-  if (loc.includes("checkout") || loc.includes("my_account")) {
+  if (loc.includes("checkout")) {
     $('#wizard').smartWizard();
 
     $('.buttonNext').addClass('btn btn-success');
@@ -46,6 +46,14 @@ $(document).ready(function() {
     $('.buttonFinish').addClass('btn btn-success');
   }
   
+  if (loc.includes("my_account")) {
+    $('#wizard').smartWizard();
+
+    $('.buttonNext').remove();
+    $('.buttonPrevious').remove();
+    $('.buttonFinish').remove();
+  }
+    
 
   var auth2;
 
