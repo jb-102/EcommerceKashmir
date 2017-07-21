@@ -135,7 +135,7 @@ $(document).ready(function() {
 
       if (session_data != 'false') 
       {
-        $.post(cart_url, {action:'checkNumbers',user_email:session_data}).done(function (data) {
+        $.post(cart_url, {action:'checkNumbers',user_email:$.trim(session_data)}).done(function (data) {
 
           if (data <= 0) 
           {
@@ -306,7 +306,7 @@ $(document).ready(function() {
       client_id: '889653158766-6fhhgojvl9o9ccp21jj5pssgkugskvg8.apps.googleusercontent.com',
       cookiepolicy: 'single_host_origin',
     });
-    attachSignin(document.getElementById('gmail_btn'));
+    // attachSignin(document.getElementById('gmail_btn'));
   });
 
 
@@ -894,7 +894,7 @@ function validateForm(form) {
   var district = $('#'+form+'district');
   var pincode = $('#'+form+'pincode');
 
-  if ($.trim(company_name.val()) == '' || $.trim(company_name.val()) == 'undefined') 
+  if ($.trim(company_name.val()) == ' ' || $.trim(company_name.val()) == 'undefined') 
   {
     company_name.val('');
   }

@@ -58,15 +58,44 @@ function SmartWizard(target, options) {
         $this.target.append(elmActionBar);
         this.contentWidth = $this.elmStepContainer.width();
 
-        $($this.buttons.next).click(function() {
+                $($this.buttons.next).click(function() {
 
-            $this.goForward();
+            if ($this.curStepIdx == 0) 
+            {
+                if(validateForm('billing_'))
+                {
+                    $this.goForward();
+                }
+            }
+            else if($this.curStepIdx == 1)
+            {
+                if(validateForm('shipping_'))
+                {
+                    $this.goForward();
+                }
+            }
+            else
+            {
+                $this.goForward();
+            }
+
             return false;
 
         });
         $($this.buttons.previous).click(function() {
 
-            $this.goBackward();
+            if($this.curStepIdx == 1)
+            {
+                if(validateForm('shipping_'))
+                {
+                    $this.goBackward();
+                }
+            }
+            else
+            {
+                $this.goBackward();
+            }
+
             return false;
         });
 
@@ -83,7 +112,15 @@ function SmartWizard(target, options) {
                         var formData = $('#hidden_form').serializeArray();
                         $.post('./php/checkout.php',formData).done(function(data){
 
-                            alert(data);
+                            if (data.includes('success')) 
+                            {
+                                var orderId = data.split(',')[1];
+                                alert("hurray! your order has been successfully place with order ID : "+order);
+                            }
+                            else
+                            {
+                                alert("SORRY! Couldnt place your order. Please Try Again.");
+                            }
 
                         });
                 }
@@ -109,13 +146,6 @@ function SmartWizard(target, options) {
                 else if($this.curStepIdx == 1)
                 {
                     if(validateForm('shipping_'))
-                    {
-                        _loadContent($this, nextStepIdx);
-                    }
-                }
-                else if($this.curStepIdx == 3)
-                {
-                    if(validateCardData())
                     {
                         _loadContent($this, nextStepIdx);
                     }
@@ -147,19 +177,6 @@ function SmartWizard(target, options) {
                             $this.goForward();
                         }
                     }
-                    else if($this.curStepIdx == 2)
-                    {
-                        initiateCcavenue();
-                        $this.goForward();
-                        
-                    }
-                    else if($this.curStepIdx == 3)
-                    {
-                        if(validateCardData())
-                        {
-                            $this.goForward();
-                        }
-                    }
                 }else if(e.which==37){ // Left Arrow
                     if($this.curStepIdx == 1)
                     {
@@ -168,14 +185,7 @@ function SmartWizard(target, options) {
                             $this.goBackward();
                         }
                     }
-                    else if($this.curStepIdx == 3)
-                    {
-                        if(validateCardData())
-                        {
-                            $this.goBackward();
-                        }
-                    }
-                    else
+                    else if($this.curStepIdx == 2)
                     {
                         $this.goBackward();
                     }
@@ -463,7 +473,6 @@ function SmartWizard(target, options) {
             height += $(this).outerHeight();
         });
 
-        alert('height');
         // These values (5 and 20) are experimentally chosen.
         stepContainer.height(height + 5);
         this.elmStepContainer.height(height + 20);

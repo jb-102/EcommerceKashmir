@@ -6,6 +6,21 @@ var cart_url = "./php/cart.php";
 
 $(document).ready(function() {
 
+
+  window.Parsley.on('field:error', function() {
+    $(this.$element).focus();
+  });
+
+  window.Parsley.addValidator('fileextension', function (value, requirement) {
+    // the value contains the file path, so we can pop the extension
+    var fileExtension = value.split('.').pop();
+    var extent = requirement.split(" ");
+
+    return fileExtension === extent[0] || fileExtension === extent[1] || fileExtension === extent[2] || fileExtension === extent[3] || fileExtension === extent[4] || fileExtension === extent[5];
+  }, 32).addMessage('en', 'fileextension', 'The extension doesn\'t match the required');
+
+  var loc = window.location.pathname;
+
   function get_item_id(productid){
         
         var send_id = productid ; 
@@ -23,6 +38,15 @@ $(document).ready(function() {
 
   }
 
+  if (loc.includes("checkout") || loc.includes("my_account")) {
+    $('#wizard').smartWizard();
+
+    $('.buttonNext').addClass('btn btn-success');
+    $('.buttonPrevious').addClass('btn btn-primary');
+    $('.buttonFinish').addClass('btn btn-success');
+  }
+  
+
   var auth2;
 
   gapi.load('auth2', function(){
@@ -31,7 +55,7 @@ $(document).ready(function() {
       client_id: '1011628870832-pqdk605vshh3ftsf1ifdli1nthiosmlp.apps.googleusercontent.com',
       cookiepolicy: 'single_host_origin',
     });
-    attachSignin(document.getElementById('gmail_btn'));
+    // attachSignin(document.getElementById('gmail_btn'));
   });
 
 
@@ -404,5 +428,35 @@ $(".remove_from_cart").click(function (){
   });
   
 });
+
+
+function validateForm(form) {
+
+  var name = $('#'+form+'name');
+  var email = $('#'+form+'email');
+  var tel = $('#'+form+'tel');
+  var address = $('#'+form+'address');
+  var city = $('#'+form+'city');
+  var landmark = $('#'+form+'landmark');
+  var district = $('#'+form+'district');
+
+  var check_name = name.parsley().validate() == true;
+  var check_email = email.parsley().validate() == true;
+  var check_tel = tel.parsley().validate() == true;
+  var check_address = address.parsley().validate() == true;
+  var check_landmark = landmark.parsley().validate() == true;
+  var check_district = district.parsley().validate() == true;
+
+
+  if (check_name && check_email && check_tel && check_address && check_landmark && check_district) 
+  {
+    $('#full_'+form+'address').val(name.val()+','+email.val()+','+tel.val()+','+address.val()+','+landmark.val()+','+district.val());
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
 
 
