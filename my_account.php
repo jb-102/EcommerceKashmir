@@ -73,7 +73,7 @@
   </head>
   <body> 
 
-<?php include("inc/header.php")?>
+<?php include("inc/header.php");?>
 
 <div id="main_page_content" >
 
@@ -164,45 +164,87 @@
                         <div class="panel-group" id="step-3" style="margin:0;">
 
                             <!-- Order Summary -->
-                            <div class="panel panel-default aa-checkout-odersummary">
-                              
+                         
+                         <div class="aa-checkout-billaddress" style="background: ghostwhite;">
+                        
+                        <div class="panel-heading">
+                                    <h3 class="text-center">All Orders</h3>
+                        </div>
 
-                          <div class="box-title">
-                              <h3 class="text-center">Order Summary</h3>
-                          </div>
-                              <div id="collapseFour" class="panel-collapse collapse in">
-                              <div class="aa-order-summary-area">
-                                <table class="table table-responsive">
-                                  <thead>
-                                    <tr>
-                                      <th>Product</th>
-                                      <th>Total</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    
-                                    <tr>
-                                      <td>M-744 <strong> x  1</strong></td>
-                                      <td>RS 46</td>
-                                    </tr>
+                        <div id="collapseThree" class="panel-collapse collapse in" aria-expanded="true">
+                          <div id="all-orders" class="panel-body">
+                                 <div class="single_order" style="border:none;">
 
-                                                                      </tbody>
-                                  <tfoot>
-                                    <tr>
-                                      <th>Subtotal</th>
-                                      <td>RS 46</td>
-                                    </tr>
-                                     <tr>
-                                      <th>Total</th>
-                                      <td>RS 48.3</td>
-                                    </tr>
-                                  </tfoot>
-                                </table>
+                              <div class="order order_header">
+                                <div class="left_side order_number">
+                                  <a class="order_button blue_button">ORDER1486806583ni</a>
+                                </div>
+                                <div class="right_side order_action_buttons">
+                                  
+                                                                        <a data-order_id="ORDER1486806583ni" class="order_button grey_button generate_invoice_button">Invoice</a>
+                                                                    
+                                </div>
                               </div>
-                            </div>
 
-                            <input type="hidden" value="46" id="cc_billing_amount">
+                              <div class="order order_main">
+                                <div class="order_address">
+                                  <div class="address_header">Shipping Address</div>
+                                  <div class="address">
+                                    <div>Name </div>
+                                    <div>Email</div>
+                                    <div>Contact</div>
+                                    <div>Address</div>
+                                  </div>
+                                  <hr>
+                                  <div class="address_header">Billing Address</div>
+                                  <div class="address">
+
+                                    <div>Name </div>
+                                    <div>Email</div>
+                                    <div>Contact</div>
+                                    <div>Address</div>
+                                  </div>
+                                </div>
+                                <div class="order_item">
+                                  <table class="table table-responsive">
+                                    <thead>
+                                      <tr>
+                                        <th>ITEM NAME</th>
+                                        <th>QUANTITY</th>
+                                        <th>PRICE</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+
+                                                                          <tr>
+                                        <td>M-795</td>
+                                        <td>2</td>
+                                        <td>Rs 92</td>
+                                      </tr>
+
+                                                                          <tr>
+                                        <td>M-744</td>
+                                        <td>1</td>
+                                        <td>Rs 46</td>
+                                      </tr>
+
+                                                                        </tbody>
+                                  </table>  
+                                </div>
+                              </div>
+
+                              <div class="order order_footer">
+                                <div class="left_side order_date">
+                                  <span>Date: </span>2017-02-11                                </div>
+                                <div class="right_side order_date">
+                                  <span>Grand Total: Rs </span>138                                </div>
+                              </div>  
                             </div>
+                            
+
+                                                      </div>
+                        </div>
+                      </div>
 
                         </div>
 

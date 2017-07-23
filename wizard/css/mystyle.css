@@ -282,7 +282,7 @@ a
 
 .blue_button
 {
-  background: blue;
+  background: #1ABB9C;
   color: white;
   word-wrap: break-word;
 }
@@ -290,8 +290,8 @@ a
 .blue_button:hover
 {
   background: white;
-  color: blue;
-  border: solid 1px blue;
+  color: black;
+  border: solid 1px #099ad1;
 }
 
 .grey_button
