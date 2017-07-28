@@ -297,30 +297,56 @@
 
             </tr>
           </thead>
-
           <tbody>
+            <!--Apply CartJS with Rivet.js-->
+            
+            <!-- rivets: each-item -->
+            
+<?php
 
+    include("inc/db.php");
+
+    $get_wishid = "SELECT * from USER_WISHLIST";
+    $run = mysqli_query($con , $get_wishid);
+    while ($row = mysqli_fetch_array($run)) {
+      
+      $get_wish_id = $row['item_id'];
+
+      $get_wish_data = "SELECT * from products WHERE item_id='$get_wish_id'";
+      $run1 = mysqli_query($con , $get_wish_data);
+      $row1 = mysqli_fetch_array($run1);
+
+      $get_image = $row1['item_ist_view'];
+      $get_name = $row1['item_name'];
+      $get_price=$row1['item_price'];
+      $get_category= $row1['item_category'];
+
+?>
 
             <tr id="cart_row_1">
               
               <td class="item-image">
                 <a href="#">
-                   <img src="admin/images/christian1.jpg" alt="image" style="width:100px; height:100px; ">
+                   <img src="admin/images/<?php echo "$get_image";?>" alt="image" style="width:100px; height:100px; ">
                 </a>
               </td>
               <td class="item-title">
-                <a href="/products/hot-com-product-sample?variant=10631504707">
-                  <span class="item-name"> Samsung C4 </span>
+                <a>
+                  <span class="item-name"><?php echo "$get_name";?> </span>
                 </a>
                 <p class="item-variant"> <span class="item-variant"></span></p>
               </td>
-              <td class="item-price"><span class="money" id="product_price_1" data-currency-usd="$225.00" data-currency="USD">₹8000</span></td>
-           
 
-              <td class="item-total"><span class="money" data-currency-usd="$675.00" data-currency="USD"><span id="product_total_1">category name</span></span></td>
+              <td class="item-price"><span class="money" id="product_price_1" data-currency-usd="$225.00" data-currency="USD"><?php echo "$get_price";?></span></td>
+
+             <td class="item-total"><span class="money" data-currency-usd="$675.00" data-currency="USD"><span id="product_total_1"><?php echo "$get_category";?></span></span></td>
               
             </tr>
 
+<?php 
+  }
+?>
+            </tbody>
         </table>
 
 
@@ -366,7 +392,7 @@
 
     <!-- footer -->  
     
-    <?php include("inc/footer.php")?>
+    <?php include("inc/footer.php");?>
     <!-- / footer -->
 
     <!-- Login Modal -->  
@@ -475,9 +501,3 @@
 
   </body>
 </html>
-
-  
-
-
-
-
