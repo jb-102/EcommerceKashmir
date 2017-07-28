@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-
+<?php session_start(); ?>
 
 <html lang="en">
   <head>
@@ -74,6 +74,7 @@
   <body> 
 
 <?php include("inc/header.php");?>
+<?php include("inc/db.php");?>
 
 <div id="main_page_content" >
 
@@ -110,6 +111,12 @@
 
                         <div class="panel-group" id="step-2">
 
+                            <?php
+                              $sql = "SELECT * FROM user_credentials WHERE user_email = '".$_SESSION['user']."'";
+                              $user_details = $con -> query($sql);
+                              $user_details = $user_details -> fetch_assoc();
+                            ?>
+
                             <!-- Shipping Address -->
                             <div  class="aa-checkout-billaddress" style="background-color: ghostwhite;">
                               <div class="panel-heading">
@@ -122,13 +129,13 @@
                                  <div class="row">
                                     <div class="col-md-6">
                                       <div class="aa-checkout-single-bill">
-                                        <input type="text" id="shipping_first_name" value="" required="" readonly="" placeholder="Enter your Name*" class="form-control parsley-success" data-parsley-id="208" /><ul class="parsley-errors-list" id="parsley-id-208"></ul>
+                                        <input type="text" id="account_name" required="" value="<?=$user_details['user_name']?>" readonly="" placeholder="Enter your Name*" class="form-control parsley-success" data-parsley-id="208" /><ul class="parsley-errors-list" id="parsley-id-208"></ul>
                                       </div>                             
                                     </div>
 
                                     <div class="col-md-6">
                                       <div class="aa-checkout-single-bill">
-                                        <input type="email" id="shipping_email" value="" readonly="" required="" placeholder="Email Address*" class="form-control parsley-success" data-parsley-id="210" /><ul class="parsley-errors-list" id="parsley-id-210"></ul>
+                                        <input type="email" id="account_email" readonly="" name="account_email" value="<?=$user_details['user_email']?>" required="" placeholder="Email Address*" class="form-control parsley-success" data-parsley-id="210" /><ul class="parsley-errors-list" id="parsley-id-210"></ul>
                                       </div>                             
                                     </div>
                                   </div> 
@@ -137,21 +144,18 @@
 
                                     <div class="col-md-6">
                                       <div class="aa-checkout-single-bill">
-                                        <input type="password" id="shipping_tel" value="" data-parsley-minlength="10" data-parsley-maxlength="10" required="" placeholder="New Password*" class="form-control parsley-success" data-parsley-id="211" /><ul class="parsley-errors-list" id="parsley-id-211"></ul>
+                                        <input type="password" id="account_password" value="" data-parsley-minlength="10" data-parsley-maxlength="10" required="" name="account_password" placeholder="New Password*" class="form-control parsley-success" data-parsley-id="211" /><ul class="parsley-errors-list" id="parsley-id-211"></ul>
                                       </div>
                                     </div>
 
                                     <div class="col-md-6">
                                       <div class="aa-checkout-single-bill">
-                                        <input type="password" id="shipping_district" value="" placeholder="Confirm password*" required="" class="form-control parsley-success" data-parsley-id="214" /><ul class="parsley-errors-list" id="parsley-id-214"></ul>
+                                        <input type="password" id="account_password_confirm" value="" name="account_password_confirm" placeholder="Confirm password*" required="" class="form-control parsley-success" data-parsley-id="214" /><ul class="parsley-errors-list" id="parsley-id-214"></ul>
                                       </div>                             
                                     </div>
                                   </div> 
                                   <div>
-                                    <input type="submit" value="Cancel" class="btn btn-success pull-right" name="">
-
-                                    <input type="submit" value="Submit" class="btn btn-success pull-right" name="" style="margin-right: 5px;">
-
+                                    <input disabled type="button" id="update_account_details" value="Update" class="btn btn-success pull-right" style="margin-right: 5px;">
                                   </div> 
 
                                 </div>
@@ -168,21 +172,27 @@
                          <div class="aa-checkout-billaddress" style="background: ghostwhite;">
                         
                         <div class="panel-heading">
-                                    <h3 class="text-center">All Orders</h3>
+                          <h3 class="text-center">All Orders</h3>
                         </div>
 
                         <div id="collapseThree" class="panel-collapse collapse in" aria-expanded="true">
                           <div id="all-orders" class="panel-body">
-                                 <div class="single_order" style="border:none;">
+                            <?php
 
+                                $res = $con->query("SELECT * FROM user_orders WHERE user_email='".$_SESSION['user']."' ORDER BY order_date DESC");
+
+                                if ($res->num_rows != 0){
+                                
+                                  while ($row = $res -> fetch_assoc()) {
+                                    $total=0;
+                                    $shipping_address = explode(';', $row['shipping_address']);
+                                    $billing_address = explode(';', $row['billing_address']);
+
+                            ?>
+                            <div class="single_order" style="border:none;">
                               <div class="order order_header">
                                 <div class="left_side order_number">
-                                  <a class="order_button blue_button">ORDER1486806583ni</a>
-                                </div>
-                                <div class="right_side order_action_buttons">
-                                  
-                                                                        <a data-order_id="ORDER1486806583ni" class="order_button grey_button generate_invoice_button">Invoice</a>
-                                                                    
+                                  <a class="order_button blue_button"><?= $row['order_id']; ?></a>
                                 </div>
                               </div>
 
@@ -190,19 +200,18 @@
                                 <div class="order_address">
                                   <div class="address_header">Shipping Address</div>
                                   <div class="address">
-                                    <div>Name </div>
-                                    <div>Email</div>
-                                    <div>Contact</div>
-                                    <div>Address</div>
+                                    <div><?= $shipping_address[0]; ?></div>
+                                    <div><?= $shipping_address[1]; ?></div>
+                                    <div><?= $shipping_address[2]; ?></div>
+                                    <div><?= $shipping_address[3]; ?></div>
                                   </div>
                                   <hr>
                                   <div class="address_header">Billing Address</div>
                                   <div class="address">
-
-                                    <div>Name </div>
-                                    <div>Email</div>
-                                    <div>Contact</div>
-                                    <div>Address</div>
+                                    <div><?= $billing_address[0]; ?> </div>
+                                    <div><?= $billing_address[1]; ?></div>
+                                    <div><?= $billing_address[2]; ?></div>
+                                    <div><?= $billing_address[3]; ?></div>
                                   </div>
                                 </div>
                                 <div class="order_item">
@@ -216,19 +225,24 @@
                                     </thead>
                                     <tbody>
 
-                                                                          <tr>
-                                        <td>M-795</td>
-                                        <td>2</td>
-                                        <td>Rs 92</td>
-                                      </tr>
+                                      <?php 
 
-                                                                          <tr>
-                                        <td>M-744</td>
-                                        <td>1</td>
-                                        <td>Rs 46</td>
-                                      </tr>
+                                        $item_res = $con->query("SELECT * FROM order_details WHERE order_id ='".$row['order_id']."'");
 
-                                                                        </tbody>
+                                        while ($item_row = $item_res->fetch_assoc()) {
+
+                                          $total += $item_row['total_price'];
+
+                                      ?>
+                                      <tr>
+                                        <td><?= $item_row['item_name'] ?></td>
+                                        <td><?= $item_row['item_quantity'] ?></td>
+                                        <td>Rs <?= $item_row['total_price'] ?></td>
+                                      </tr>
+                                      <?php
+                                        }
+                                      ?>
+                                    </tbody>
                                   </table>  
                                 </div>
                               </div>
@@ -237,12 +251,22 @@
                                 <div class="left_side order_date">
                                   <span>Date: </span>2017-02-11                                </div>
                                 <div class="right_side order_date">
-                                  <span>Grand Total: Rs </span>138                                </div>
+                                  <span>Grand Total: Rs </span><?= $total; ?>
+                                </div>
                               </div>  
                             </div>
-                            
+                            <hr/>
+                            <?php
 
-                                                      </div>
+                                 }
+                                }   
+                                else
+                                {
+                                  echo "<div>NO ORDERS FOUND</div>";
+                                }                         
+
+                            ?>
+                          </div>
                         </div>
                       </div>
 
@@ -277,12 +301,6 @@
           <tbody>
 
 
- 
-
-            
-            <!--Apply CartJS with Rivet.js-->
-            
-            <!-- rivets: each-item -->
             <tr id="cart_row_1">
               
               <td class="item-image">

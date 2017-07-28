@@ -1,4 +1,5 @@
 <!doctype html>
+<?php session_start(); ?>
 <!--[if IE 8]><html lang="en" class="ie8 js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="js"> <!--<![endif]-->
 
@@ -89,6 +90,11 @@
     <script src="js/bc.global7edd.js" defer></script>
     <script src="js/bc.slider7edd.js"></script>
     <script src="js/bc.script7edd.js"></script>
+
+    <!-- PNotify -->
+    <script src="./allow_me/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="./allow_me/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="./allow_me/vendors/pnotify/dist/pnotify.nonblock.js"></script>
 
 </head>                                                  
 
@@ -266,8 +272,8 @@ include("inc/header.php");
         <div id="customer-login" class="content">
           <h3 class="subheading">Already registered?</h3>
 
-          <form id="customer_login" >
-          <input type="hidden" value="from" name="login" />
+          <form id="login_form" >
+          <input type="hidden" value="login" name="from"/>
 
           <div class="control-wrapper">
             <label for="customer_email">Your Email<span class="req">*</span></label>
@@ -283,40 +289,32 @@ include("inc/header.php");
 
           <div class="control-wrapper last">
             <div class="action">
-              <a class="forgot-pass" href="javascript:;" onclick="showRecoverPasswordForm()">Forgot your password?</a>
+              <a class="forgot-pass" id="forgot_password">Forgot your password?</a>
               <span>or</span>
               <a class="return-store" href="../index.html">Return to Store</a>
             </div>
-            <button class="btn btn-default"  id="loginBtn" "><i class="fa fa-lock left"></i>Login</button>
-          </div>
-
-          </form>
-
-        </div>
-
-        <div id="recover-password" style="display: none;">
-
-          <h3 class="subheading">Reset Your Password</h3>
-
-          <p class="note">We will send you an email to reset your password.</p>
-
-          <form method="post" action="https://megashop-theme.myshopify.com/account/recover" accept-charset="UTF-8"><input type="hidden" value="recover_customer_password" name="form_type" /><input type="hidden" name="utf8" value="✓" />
-
-          
-
-          
-
-          <div class="control-wrapper">
-            <label for="email">Your Email<span class="req">*</span></label>
-            <input type="email" value="" name="email" id="recover-email" class="col-sm-10 col-xs-12" />
+            <a id="login_btn" class="btn btn-default" ><i class="fa fa-user left"></i>LogIn</a>
           </div>
 
           <div class="control-wrapper">
-            <button class="btn btn-default" type="submit">Submit</button>
-            <a class="cancel btn btn-default" href="javascript:;" onclick="hideRecoverPasswordForm();">Cancel</a>
-          </div>
+                OR SIGN IN WITH
+              </div>
+              <div>
+                  <!-- FACEBOOK BTN -->
+                  <div style="display: inline-block;">
+                    <fb:login-button id="f_login" data-size="xlarge" scope="public_profile,email" onlogin="checkLoginState()">
+                      facebook
+                    </fb:login-button>
+                  </div>
+                  <!-- GMAIL BTN -->
+                  <div id="gmail_btn">
+                    <span class="icon"></span>
+                    <span class="buttonText">Gmail</span>
+                  </div>
+              </div>
 
           </form>
+
         </div>
       </div>
 
@@ -325,27 +323,6 @@ include("inc/header.php");
   </div>
 
 </div>
-
-<script type="text/javascript">
-  if (window.location.hash == '#recover') { showRecoverPasswordForm(); }
-
-  function showRecoverPasswordForm() {
-    $('#recover-password').fadeIn();
-    $('#customer-login').hide();
-    window.location.hash = '#recover';
-    return false;
-  }
-
-  function hideRecoverPasswordForm() {
-    $('#recover-password').hide();
-    $('#customer-login').fadeIn();
-    window.location.hash = '';
-    return false;
-  }
-</script>
-
-
-
                             
                 </div>
 

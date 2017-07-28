@@ -73,8 +73,6 @@
       }
 
     }
-
-
     if ($found) {
       echo "success";
     }
@@ -132,7 +130,7 @@
       }     
     }
   }
-  elseif ($_POST['from'] == 'generateCode') {
+  elseif ($_POST['from'] == 'forgotPassword') {
 
     $user_email = $_POST['user_email'];
 
@@ -140,41 +138,32 @@
 
     $result = $conn -> query($sql);
 
-    $email = $result->fetch_assoc();
-    $email = $email['registered_from'];
+    $result = $result->fetch_assoc();
+    $register_email = $result['registered_from'];
 
-    if ($email == "" || $email == null ) {
+    if ($register_email == "" || $register_email == null ) {
 
       echo "Email is not registered, Please register first!";
 
     }
     else
     { 
-
-        if($email == 'gmail')
+        if($register_email == 'gmail')
         {
           echo 'This email is registered with Google. Please Signin with Google';
         }
-        elseif ($email == 'facebook') 
+        elseif ($register_email == 'facebook') 
         {
           echo 'This email is registered with Facebook. Please Login with Facebook';
         }
-        elseif ($email == 'mainsite') 
+        elseif ($register_email == 'mainsite') 
         {
           $ranvalue = getRandom();
 
+          $update_sql = "UPDATE user_credentials SET user_password=$ranvalue WHERE user_email = '$user_email'";
 
-          $update_sql = "UPDATE user_credentials SET confirmation_code=$ranvalue WHERE user_email = '$user_email'";
+          mail($user_email, "New Password : ". $ranvalue, "Your new auto generated password: " . $ranvalue . "\r\n \r\n \r\n \r\n Please don't reply to this system generated email.", "From: contact@ecommerce.com");
 
-          $select_sql = "SELECT admin_email from admin_credentials"; 
-
-          $result = $conn -> query($select_sql);
-
-          while ($row = $result -> fetch_assoc()) {
-
-              mail($row['admin_email'], "Confirmation Code from C A R D Pine : ". $ranvalue, "Your Confirmation code is : " . $ranvalue . "\r\n \r\n \r\n \r\n Please don't reply to this system generated email.", "From: contact@cardpine.com");
-
-          }
 
           if ($conn->query($update_sql) === TRUE){
 
@@ -188,44 +177,22 @@
       
     }
   }
-  elseif ($_POST['from'] == 'reset') {
+  elseif ($_POST['from'] == 'update') {
 
-    $user_email = $_POST['email'];
-    $new_password = $_POST['new_password'];
-
-    if ($new_password == $_POST['confirm_password']) {
+    $user_email = $_POST['account_email'];
+    $new_password = $_POST['account_password'];
       
-      $sql= "SELECT confirmation_code from user_credentials WHERE user_email = '$user_email'";
+    $update_sql = "UPDATE user_credentials SET user_password='$new_password' WHERE user_email = '$user_email'";
 
-      $result = $conn -> query($sql);
-
-      $code = $result->fetch_assoc();
-      $code = $code['confirmation_code'];
-
-      if ($code == $_POST['confirmation_code']) {
-        
-        $update_sql = "UPDATE user_credentials SET user_password='$new_password' WHERE user_email = '$user_email'";
-
-        if ($conn->query($update_sql) === TRUE)
-        {
-          echo 'success';
-        }
-        else
-        {
-          echo "Sorry, Failed to change! Try again!".$conn->error;
-        }
-
-      }
-      else
-      {
-        echo "Confirmation Code doesn't match!";
-      }
-
+    if ($conn->query($update_sql) === TRUE)
+    {
+      echo 'success';
     }
     else
     {
-      echo "Passwords doesn't match!";
+      echo "Sorry, Failed to change! Try again!".$conn->error;
     }
+
   }
 
   function getRandom()

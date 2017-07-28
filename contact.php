@@ -1,4 +1,5 @@
 ﻿<!doctype html>
+<?php session_start(); ?>
 <!--[if IE 8]><html lang="en" class="ie8 js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="js"> <!--<![endif]-->
 

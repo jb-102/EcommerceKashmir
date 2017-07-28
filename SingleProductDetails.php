@@ -1,6 +1,7 @@
 ﻿
 <?php
     include("inc/db.php");
+    session_start();
 
 if(!isset($_GET['var_id'])){
 

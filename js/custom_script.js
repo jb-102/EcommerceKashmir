@@ -6,19 +6,6 @@ var cart_url = "./php/cart.php";
 
 $(document).ready(function() {
 
-
-  window.Parsley.on('field:error', function() {
-    $(this.$element).focus();
-  });
-
-  window.Parsley.addValidator('fileextension', function (value, requirement) {
-    // the value contains the file path, so we can pop the extension
-    var fileExtension = value.split('.').pop();
-    var extent = requirement.split(" ");
-
-    return fileExtension === extent[0] || fileExtension === extent[1] || fileExtension === extent[2] || fileExtension === extent[3] || fileExtension === extent[4] || fileExtension === extent[5];
-  }, 32).addMessage('en', 'fileextension', 'The extension doesn\'t match the required');
-
   var loc = window.location.pathname;
 
   function get_item_id(productid){
@@ -52,7 +39,20 @@ $(document).ready(function() {
     $('.buttonNext').remove();
     $('.buttonPrevious').remove();
     $('.buttonFinish').remove();
+
+    window.Parsley.on('field:error', function() {
+      $(this.$element).focus();
+    });
+      window.Parsley.addValidator('fileextension', function (value, requirement) {
+    // the value contains the file path, so we can pop the extension
+    var fileExtension = value.split('.').pop();
+    var extent = requirement.split(" ");
+
+    return fileExtension === extent[0] || fileExtension === extent[1] || fileExtension === extent[2] || fileExtension === extent[3] || fileExtension === extent[4] || fileExtension === extent[5];
+  }, 32).addMessage('en', 'fileextension', 'The extension doesn\'t match the required');
+
   }
+
     
 
   var auth2;
@@ -63,7 +63,11 @@ $(document).ready(function() {
       client_id: '1011628870832-pqdk605vshh3ftsf1ifdli1nthiosmlp.apps.googleusercontent.com',
       cookiepolicy: 'single_host_origin',
     });
-    // attachSignin(document.getElementById('gmail_btn'));
+
+    if (loc.includes("register")) {
+    attachSignin(document.getElementById('gmail_btn'));
+  }
+    
   });
 
 
@@ -85,9 +89,9 @@ $(document).ready(function() {
               {
                 $.post(session_url, {user:"gmail",email:user_email}).done(function (session_data) {
 
-                  if (session_data == 'success') 
+                  if ($.trim(session_data) == 'success') 
                   {
-                    window.location.reload();
+                    window.location.herf = 'index.php';
                   }
                   else
                   {
@@ -121,9 +125,9 @@ function checkLoginState() {
             {
               $.post(session_url, {user:"facebook",email:response.email}).done(function (session_data) {
 
-                if (session_data == 'success') 
+                if ($.trim(session_data) == 'success') 
                 {
-                  window.location.reload();
+                  window.location.herf = 'index.php';
                 }
                 else
                 {
@@ -275,9 +279,9 @@ $("#create_account").click(function(){
     {
       $.post(session_url, {user:"main",email:formData[1].value}).done(function (session_data) {
 
-        if (session_data == 'success') 
+        if ($.trim(session_data) == 'success') 
         {
-          window.location.reload();
+          window.location.herf = 'index.php';
         }
         else
         {
@@ -287,12 +291,91 @@ $("#create_account").click(function(){
     }
     else
     {
-      $("#error_message_register").text(data); 
-     $("#error_message_register").slideDown();
+      new PNotify({
+        title: 'Status',
+        text: data,
+        type: 'error',
+        styling: 'bootstrap3'
+      });
     }
 
   });
 });
+
+$('#login_btn').click(function(){
+
+    var formData = $("#login_form").serializeArray();
+    console.log(formData);
+    $.post(url, formData).done(function (data) {
+
+      if (data == 'success') 
+      {
+        $.post(session_url, {user:"main",email:formData[1].value}).done(function (session_data) {
+
+          if ($.trim(session_data) == 'success') 
+          {
+            alert('hey');
+            window.location.herf = 'index.php';
+          }
+          else
+          {
+            alert(session_data);
+          }
+        }); 
+      }
+      else
+      {
+        PNotify.removeAll();
+        new PNotify({
+          title: 'Status',
+          text: data,
+          type: 'error',
+          styling: 'bootstrap3'
+        });
+      }
+
+    });
+});
+
+$('#forgot_password').click(function(){
+
+    var user_email = $.trim($("#customer_email").val());
+    if(user_email === '' || user_email === null)
+    {
+      new PNotify({
+        title: 'Status',
+        text: 'Please fill in the email feild first!!',
+        type: 'error',
+        styling: 'bootstrap3'
+      });
+    }
+    else
+    {
+      $.post(url, {user_email:user_email}).done(function (data) {
+
+        if ($.trim(data) === 'success') 
+        {
+          new PNotify({
+            title: 'Status',
+            text: 'Your new password has been sent to your mail. Thank You',
+            type: 'success',
+            styling: 'bootstrap3'
+          });
+        }
+        else
+        {
+          new PNotify({
+            title: 'Status',
+            text: data,
+            type: 'error',
+            styling: 'bootstrap3'
+          });
+        }
+
+      });
+    }
+});
+
 
 $("#qty-up").click(function (){
   var val = $("#quantity").val();
@@ -458,7 +541,7 @@ function validateForm(form) {
 
   if (check_name && check_email && check_tel && check_address && check_landmark && check_district) 
   {
-    $('#full_'+form+'address').val(name.val()+','+email.val()+','+tel.val()+','+address.val()+','+landmark.val()+','+district.val());
+    $('#full_'+form+'address').val(name.val()+';'+email.val()+';'+tel.val()+';'+address.val()+','+landmark.val()+','+district.val());
     return true;
   }
   else
@@ -466,5 +549,48 @@ function validateForm(form) {
     return false;
   }
 }
+
+$("#account_password_confirm").bind("keyup change", function(e) {
+  if($.trim($(this).val()) === $.trim($("#account_password").val()))
+  {
+    $("#update_account_details").prop("disabled",false);
+  }
+  else
+  {
+    $("#update_account_details").prop("disabled",true);
+  }
+});
+
+$("#update_account_details").on('click',function(){
+
+  let account_email = $('#account_email').val();
+  let account_password = $('#account_password').val();
+  $.post(url, {from:'update',account_email:account_email,account_password:account_password}).done(function (data) {
+
+    if (data == 'success') 
+    {
+      new PNotify({
+        title: 'Status',
+        text: 'Your password has been changed successfully.',
+        type: 'success',
+        styling: 'bootstrap3'
+      });
+    }
+    else
+    {
+      new PNotify({
+        title: 'Status',
+        text: data,
+        type: 'error',
+        styling: 'bootstrap3'
+      });
+    }
+
+  });
+
+});
+
+
+
 
 
