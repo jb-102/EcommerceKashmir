@@ -45,9 +45,9 @@
 
 
 <!-- PNotify -->
-<link href="./allow_me/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
-<link href="./allow_me/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
-<link href="./allow_me/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+<link href="./admin/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+<link href="./admin/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+<link href="./admin/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
 <!-- jQuery library -->
 <script src="js/jquery.min.js"></script>  
@@ -94,9 +94,9 @@
 
 
 <!-- PNotify -->
-<script src="./allow_me/vendors/pnotify/dist/pnotify.js"></script>
-<script src="./allow_me/vendors/pnotify/dist/pnotify.buttons.js"></script>
-<script src="./allow_me/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+<script src="./admin/vendors/pnotify/dist/pnotify.js"></script>
+<script src="./admin/vendors/pnotify/dist/pnotify.buttons.js"></script>
+<script src="./admin/vendors/pnotify/dist/pnotify.nonblock.js"></script>
 
 </head>
 
@@ -286,9 +286,9 @@ include("inc/header.php");
 
                 <div class="featured-img switch">
                     <a href="SingleProductDetails.php?var_id=<?php echo "$productid"; ?>">
-                        <img class="featured-image front" src="admin/images/<?php echo "$productimage1";?>" alt="product image" style="height: 197px;"/>
+                        <img class="featured-image front" src="admin/images/items/ist_image/main/<?php echo "$productimage1";?>" alt="product image" style="height: 197px;"/>
                         <span class="hidden-sm hidden-xs">
-                            <img src="admin/images/<?php echo "$productimage2";?>" class="back" alt="Golddax Product Example" style="height: 197px;"/>
+                            <img src="admin/images/items/2nd_image/main/<?php echo "$productimage2";?>" class="back" alt="Golddax Product Example" style="height: 197px;"/>
                         </span>
                     </a>
                 </div>
@@ -369,10 +369,10 @@ include("inc/header.php");
                                     <div class="product-image">
                                         <div class="featured-img switch">
                                             <a href="SingleProductDetails.php?var_id=<?php echo "$get_id";?>">
-                                            <img class="featured-image front" src="admin/images/<?php echo "$getmostviewedimg1";?>" alt="Product image" style="height: 197px"/>
+                                            <img class="featured-image front" src="admin/images/items/ist_image/main/<?php echo "$getmostviewedimg1";?>" alt="Product image" style="height: 197px"/>
 
                                                 <span class="hidden-sm hidden-xs">
-                                                    <img src="admin/images/<?php echo "$getmostviewedimg2";?>" class="back" alt="Product image" style="height: 197px"/>
+                                                    <img src="admin/images/items/2nd_image/main/<?php echo "$getmostviewedimg2";?>" class="back" alt="Product image" style="height: 197px"/>
                                                 </span>
                                             </a>
                                         </div>

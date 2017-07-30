@@ -37,10 +37,10 @@
 
 
     <!-- Main style sheet -->
-    <link href="wizard/css/style.css" rel="stylesheet">  
+    <link href="./css/style.css" rel="stylesheet">  
 
     <!-- My style sheet -->
-    <link href="wizard/css/mystyle.css" rel="stylesheet">
+    <link href="./css/mystyle.css" rel="stylesheet">
 
     <!-- PNotify -->
     <link href="./admin/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
@@ -48,7 +48,7 @@
     <link href="./admin/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
     <!-- jQuery library -->
-    <script src="wizard/js/jquery.min.js"></script>  
+    <script src="./js/jquery.min.js"></script>  
 
     <!-- gmail platform -->
     <script src="https://apis.google.com/js/api:client.js"></script>
