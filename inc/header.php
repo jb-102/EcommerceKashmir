@@ -198,14 +198,33 @@
                                     <i class="fa fa-shopping-cart"></i>
                                     <span class="cart-icon"><span class="number">0</span></span>
                                 </a>
-                                <div class="cart-dd dropdown-menu">
-                                    <div id="cart-info">
-                                        <h1>Your Cart</h1>
-                                        <div id="cart-content" class="cart-content">
-                                            <div class="loading"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                              
+        <div class="cart-dd dropdown-menu">
+          <div id="cart-info">
+            <h1>Your Cart</h1>
+            <div id="cart-content" class="cart-content"><div class="items"><div class="items-inner">                                     
+            <div class="cart-item-image">        
+               <a href="/products/hot-com-product-sample?variant=10631504707"> 
+               <img src="https://cdn.shopify.com/s/files/1/1009/3778/products/p3_small.jpg" alt="">                                        
+               </a>
+            </div> 
+
+               <div class="cart-item-info">
+               <div class="cart-item-title">
+               <a href="/products/hot-com-product-sample?variant=10631504707">1<span class="x"> x </span>Hot Com Product Sample</a> 
+               </div>
+            <div class="cart-item-price"><span class="money" data-currency-usd="$225.00" data-currency="USD">$225.00</span></div> 
+            </div>
+            <a class="cart-close" href="javascript:;" data-cart-remove="1"><i class="fa fa-trash-o" title="Remove"></i></a>                                    </div>
+            </div>
+            <div class="subtotal"><span>Total</span><span class="cart-item-total-price"><span class="money" data-currency-usd="$225.00" data-currency="USD">$225.00</span></span>
+            </div>
+            <div class="action"><a href="/cart" class="btn btn-default">View Cart</a><br><button class="btn btn-default" onclick="window.location='/checkout'">     Checkout</button>
+            </div>
+            </div>
+          </div>
+        </div>
+                               
                             </div>
 
                         </div>
