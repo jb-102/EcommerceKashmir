@@ -85,17 +85,17 @@ $(document).ready(function() {
 
             
 
-              if (data == 'success') 
+              if ($.trim(data) == 'success') 
               {
                 $.post(session_url, {user:"gmail",email:user_email}).done(function (session_data) {
 
-                  if ($.trim(session_data) == 'success') 
+                  if ($.trim($.trim(session_data)) == 'success') 
                   {
                     window.location.herf = 'index.php';
                   }
                   else
                   {
-                    alert(session_data);
+                    alert($.trim(session_data));
                   }
                 });       
               }
@@ -121,17 +121,17 @@ function checkLoginState() {
 
         $.post(url, {from:"facebook",fullname:response.name,email:response.email}).done(function (data) {
 
-            if (data == 'success') 
+            if ($.trim(data) == 'success') 
             {
               $.post(session_url, {user:"facebook",email:response.email}).done(function (session_data) {
 
-                if ($.trim(session_data) == 'success') 
+                if ($.trim($.trim(session_data)) == 'success') 
                 {
                   window.location.herf = 'index.php';
                 }
                 else
                 {
-                  alert(session_data);
+                  alert($.trim(session_data));
                 }
               }); 
             }
@@ -179,10 +179,9 @@ $('.add_toCart').click(function() {
     if ($.trim(id) != '' || id != null) {
       $.post(session_url, {user:"check_session"}).done(function (session_data) {
 
-        if (session_data != 'false') 
+        if ($.trim($.trim(session_data)) != 'false') 
         {
-
-            $.post(cart_url, {action:'add',item_id:id,quantity:quan,user_email:session_data}).done(function (data) {
+            $.post(cart_url, {action:'add',item_id:id,quantity:quan,user_email:$.trim(session_data)}).done(function (data) {
 
               if (data.includes('success')) 
               {
@@ -229,23 +228,23 @@ $('.add-to-wishlist').click(function() {
   if ($.trim(id) != '' || id != null) {
     $.post(session_url, {user:"check_session"}).done(function (session_data) {
 
-      if (session_data != 'false') 
+      if ($.trim(session_data) != 'false') 
       {
 
-          $.post(wishlist_url, {action:'add',item_id:id,user_email:session_data}).done(function (data) {
+          $.post(wishlist_url, {action:'add',item_id:id,user_email:$.trim(session_data)}).done(function (data) {
 
-            if (data) 
+            if ($.trim(data)) 
             {
               new PNotify({
                 title: 'Status',
-                text: data,
+                text: $.trim(data),
                 type: 'success',
                 styling: 'bootstrap3'
               });
             }
             else
             {
-              alert(data);
+              alert($.trim(data));
             }
 
           });      
@@ -275,17 +274,17 @@ $("#create_account").click(function(){
   var formData = $("#register-form").serializeArray();
   $.post(url, formData).done(function (data) {
 
-    if (data == 'success') 
+    if ($.trim(data) == 'success') 
     {
       $.post(session_url, {user:"main",email:formData[1].value}).done(function (session_data) {
 
-        if ($.trim(session_data) == 'success') 
+        if ($.trim($.trim(session_data)) == 'success') 
         {
           window.location.herf = 'index.php';
         }
         else
         {
-          alert(session_data);
+          alert($.trim(session_data));
         }
       });
     }
@@ -308,18 +307,18 @@ $('#login_btn').click(function(){
     console.log(formData);
     $.post(url, formData).done(function (data) {
 
-      if (data == 'success') 
+      if ($.trim(data) == 'success') 
       {
         $.post(session_url, {user:"main",email:formData[1].value}).done(function (session_data) {
 
-          if ($.trim(session_data) == 'success') 
+          if ($.trim($.trim(session_data)) == 'success') 
           {
             alert('hey');
             window.location.herf = 'index.php';
           }
           else
           {
-            alert(session_data);
+            alert($.trim(session_data));
           }
         }); 
       }
@@ -398,7 +397,7 @@ $(".qty-up-cart").click(function (){
   val++;
   $.post(session_url, {user:"check_session"}).done(function (session_data) {
 
-    if (session_data != 'false') 
+    if ($.trim(session_data) != 'false') 
     {
 
         $.post(cart_url, {action:'update',item_id:id,total_quantity:val,user_email:$.trim(session_data)}).done(function (data) {
@@ -441,7 +440,7 @@ $(".qty-down-cart").click(function (){
     val = 0
   $.post(session_url, {user:"check_session"}).done(function (session_data) {
 
-    if (session_data != 'false') 
+    if ($.trim(session_data) != 'false') 
     {
 
         $.post(cart_url, {action:'update',item_id:id,total_quantity:val,user_email:$.trim(session_data)}).done(function (data) {
@@ -483,7 +482,7 @@ $(".remove_from_cart").click(function (){
   var id = $(this).data('id');
   $.post(session_url, {user:"check_session"}).done(function (session_data) {
 
-    if (session_data != 'false') 
+    if ($.trim(session_data) != 'false') 
     {
 
         $.post(cart_url, {action:'remove',item_id:id,user_email:$.trim(session_data)}).done(function (data) {
