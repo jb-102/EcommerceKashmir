@@ -312,7 +312,7 @@ include("inc/header.php");
             <a data-id="<?= $productid?>" class="btn btn-default add_toCart select-options" title="Select options"><i  class="fa fa-shopping-cart"></i><span  class="hidden-desktop">Select options</span></a>
         </div>
 
-        <div data-handle="golddax-product-example" data-target="#quick-shop-popup" onclick="get_item_id(<?php echo "$productid";?>);" class="quick_shop quick-shop-button btn-default hidden-sm hidden-xs" data-toggle="modal" title="Quick View">
+        <div data-handle="golddax-product-example" data-id = "<?= $productid;?>" data-target="#quick-shop-popup" id="open_cart_dialog" class="quick_shop quick-shop-button btn-default hidden-sm hidden-xs" data-toggle="modal" title="Quick View">
             <i class="fa fa-expand"></i>
             <span class="json hide">
                 
