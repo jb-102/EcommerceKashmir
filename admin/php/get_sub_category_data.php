@@ -64,7 +64,7 @@
             }
             else
             {
-                echo "Failed to update.";
+                echo "Failed to update.".$conn->error;
             }        
 
             
