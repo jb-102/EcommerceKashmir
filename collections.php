@@ -228,7 +228,7 @@
     <div class="image">
       <a href="products.php?var_name=<?php echo "$name";?>">
         
-        <img src="admin/images/<?php echo "$image";?>" alt="Accessories" style="height: 268px;padding: 10px;"/>
+        <img src="admin/images/items/ist_image/main/<?php echo "$image";?>" alt="Accessories" style="height: 268px;padding: 10px;"/>
         
       </a>
     </div>

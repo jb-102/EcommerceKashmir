@@ -52,7 +52,7 @@
                                                                                   
                                     
                                     <div class="dropdown mega-sub-link">
-                                        <a href="products.php?var_name_cat=<?php echo "$subcategoryname";?>" class="dropdown-link">
+                                        <a href="products.php?var_name_cat=<?= $subcategoryname?>" class="dropdown-link">
                                             <span><?php echo "$subcategoryname";?></span>
                                         </a>
 
@@ -74,7 +74,7 @@
 
                                         ?>
 
-                                            <li><a href="products.php"><?php echo "$productname"; ?></a></li>
+                                            <li><a href="products.php?subcategoryname=<?= $productname?>"><?php echo "$productname"; ?></a></li>
 
                                         <?php
                                             }
@@ -93,7 +93,7 @@
 
                                  ?>
                                  <div class="dropdown mega-sub-link">
-                                        <a href="index.html" class="dropdown-link">
+                                        <a href="products.php?var_name_cat=<?= $subcategoryname?>" class="dropdown-link">
                                             <span><?php echo "$subcategoryname";?></span>
                                         </a>
 
@@ -115,7 +115,7 @@
 
                                         ?>
 
-                                            <li><a href="products.php"><?php echo "$productname"; ?></a></li>
+                                            <li><a href="products.php?subcategoryname=<?= $productname?>"><?php echo "$productname"; ?></a></li>
 
                                         <?php
 
@@ -180,7 +180,7 @@
                             <div class="row">
                                 <div class="sb-product-head col-sm-4 col-xs-4">
                                     <a href="SingleProductDetails.php?var_id=<?php echo "$productid"; ?>">
-                                        <img src="admin/images/<?php echo "$productimg";?>" alt="popular product" style="height: 57px"/>
+                                        <img src="admin/images/items/ist_image/main/<?php echo "$productimg";?>" alt="popular product" style="height: 57px"/>
                                     </a>                 
                                 </div>
                                 <div class="sb-product-content col-sm-8 col-xs-8">
@@ -220,7 +220,7 @@
 
 <?php
 	include("inc/db.php");
-	$getkashmirart = "select * from products limit 4";
+	$getkashmirart = "select * from products where item_category = 'Kashmir Art' limit 4";
 	$run = mysqli_query($con , $getkashmirart);
 	while ($row = mysqli_fetch_array($run)) {
 		$getid=$row['item_id'];
@@ -232,7 +232,7 @@
                             <div class="row">
                                 <div class="sb-product-head col-sm-4 col-xs-4">
                                     <a href="SingleProductDetails.php">
-                                        <img src="admin/images/<?php echo "$getimage";?>" alt="product image" />
+                                        <img src="admin/images/items/ist_image/main/<?php echo "$getimage";?>" alt="product image" />
                                     </a>
                                 </div>
                                 <div class="sb-product-content col-sm-8 col-xs-8">

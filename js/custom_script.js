@@ -8,9 +8,21 @@ $(document).ready(function() {
 
   var loc = window.location.pathname;
 
-
+  if (loc.includes("cart")) {
+    $('#cartNumber').hide();
+    if($('#cartNumber .number').text() === '0')
+    {
+      alert('Your Cart Is Empty!');
+      window.location = 'index.php';
+    }
+  }
 
   if (loc.includes("checkout")) {
+    if($('#cartNumber .number').text() === '0')
+    {
+      alert('Your Cart Is Empty!')
+      window.location = 'index.php';
+    }
     $('#wizard').smartWizard();
 
     $('.buttonNext').addClass('btn btn-success');
@@ -76,7 +88,7 @@ $(document).ready(function() {
 
                   if ($.trim($.trim(session_data)) == 'success') 
                   {
-                    window.location.herf = 'index.php';
+                    window.location = 'index.php';
                   }
                   else
                   {
@@ -112,7 +124,7 @@ function checkLoginState() {
 
                 if ($.trim($.trim(session_data)) == 'success') 
                 {
-                  window.location.herf = 'index.php';
+                  window.location = 'index.php';
                 }
                 else
                 {
@@ -189,7 +201,7 @@ $('.add_toCart').click(function() {
         }
         else
         {
-          window.location.href = "register.php";
+          window.location = "register.php";
         }
       }); 
     }
@@ -236,7 +248,7 @@ $('.add-to-wishlist').click(function() {
       }
       else
       {
-        window.location.href = "register.php";
+        window.location = "register.php";
       }
     }); 
   }
@@ -265,7 +277,7 @@ $("#create_account").click(function(){
 
         if ($.trim($.trim(session_data)) == 'success') 
         {
-          window.location.herf = 'index.php';
+          window.location = 'index.php';
         }
         else
         {
@@ -298,8 +310,7 @@ $('#login_btn').click(function(){
 
           if ($.trim($.trim(session_data)) == 'success') 
           {
-            alert('hey');
-            window.location.herf = 'index.php';
+            window.location = 'index.php';
           }
           else
           {
@@ -309,7 +320,6 @@ $('#login_btn').click(function(){
       }
       else
       {
-        PNotify.removeAll();
         new PNotify({
           title: 'Status',
           text: data,
@@ -411,7 +421,7 @@ $(".qty-up-cart").click(function (){
     }
     else
     {
-      window.location.href = "register.php";
+      window.location = "register.php";
     }
   });
   
@@ -420,9 +430,12 @@ $(".qty-up-cart").click(function (){
 $(".qty-down-cart").click(function (){
   var id = $(this).data('id');
   var val = $("#quantity_"+id).val();
+  var val_send;
   val--;
-  if(val<0)
-    val = 0
+  if(val < 0)
+    val_send = val_send;
+  else
+    val_send = 0;
   $.post(session_url, {user:"check_session"}).done(function (session_data) {
 
     if ($.trim(session_data) != 'false') 
@@ -432,14 +445,19 @@ $(".qty-down-cart").click(function (){
 
           if ($.trim(data) == 'success') 
           {
-            $("#quantity_"+id).val(val);
             var productPrice = $("#product_price_"+id).text().substring(1);
             var totalPrice = val * productPrice;
-            $("#product_total_"+id).text(totalPrice);
             var subTotal = $("#subTotal").text();
-            subTotal = parseInt(subTotal) - parseInt(productPrice);
+            if(val < 0)
+              val = 0;
+            else
+            {
+              $("#quantity_"+id).val(val);
+              $("#product_total_"+id).text(totalPrice);
+              subTotal = parseInt(subTotal) - parseInt(productPrice);
+            }
             if (subTotal < 0)
-              subTotal = 0
+              subTotal = 0;
             $("#subTotal").text(subTotal);
           }
           else
@@ -456,7 +474,7 @@ $(".qty-down-cart").click(function (){
     }
     else
     {
-      window.location.href = "register.php";
+      window.location = "register.php";
     }
   }); 
   
@@ -482,7 +500,7 @@ $(".remove_from_cart").click(function (){
             $("#subTotal").text(subTotal);
             $("#cart_row_"+id).remove();
             if (subTotal = 0)
-              window.location.href = "index.php"
+              window.location = "index.php"
           }
           else
           {
@@ -498,7 +516,7 @@ $(".remove_from_cart").click(function (){
     }
     else
     {
-      window.location.href = "register.php";
+      window.location = "register.php";
     }
   });
   
@@ -588,6 +606,29 @@ $("#open_cart_dialog").on("click", function () {
       $("#qs-product-price").text(data.item_price);
 
   });
+});
+
+$("#customer_logout_link").on("click", function () {
+  $.post(session_url, {user:"logout"}).done(function (session_data) {
+
+    if ($.trim(session_data) == 'success') 
+    {
+      window.location = 'index.php';
+    }
+    else
+    {
+      new PNotify({
+        title: 'Status',
+        text: $.trim(session_data),
+        type: 'error',
+        styling: 'bootstrap3'
+      });
+    }
+  }); 
+});
+
+$("#customer_register_link").on("click", function () {
+  window.location = 'register.php';
 });
 
 

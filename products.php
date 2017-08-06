@@ -252,8 +252,22 @@ include("inc/mobileversion.php");
       
 <?php
   include("inc/db.php");
-  $get_name = $_GET['var_name'];
-  $getproducts = "select * from products where item_main_category = '$get_name' ";
+  $getproducts;
+
+  if(isset($_GET['var_name']))
+  {
+    $get_name = $_GET['var_name'];
+    $getproducts = "select * from products where item_main_category = '$get_name' ";
+  } else if(isset($_GET['var_name_cat']))
+  {
+    $get_name = $_GET['var_name_cat'];
+    $getproducts = "select * from products where item_category = '$get_name' ";
+  } else if(isset($_GET['subcategoryname']))
+  {
+    $get_name = $_GET['subcategoryname'];
+    $getproducts = "select * from products where item_sub_category = '$get_name' ";
+  }
+  
   $run = mysqli_query($con , $getproducts);
 
   while ($row = mysqli_fetch_array($run)) {
@@ -273,10 +287,10 @@ include("inc/mobileversion.php");
     <div class="product-image">      
       <div class="featured-img switch">
         <a href="SingleProductDetails.php?var_id=<?php echo "$get_id";?>"> 
-          <img class="featured-image front" src="admin/images/<?php echo "$getimage1";?>" alt="product image" style="height: 180px;" />
+          <img class="featured-image front" src="admin/images/items/ist_image/main/<?php echo "$getimage1";?>" alt="product image" style="height: 180px;" />
           
           <span class="hidden-sm hidden-xs">
-            <img src="admin/images/<?php echo "$getimage2";?>" class="back" alt="product image" style="height: 180px;"/>    
+            <img src="admin/images/items/2nd_image/main/<?php echo "$getimage2";?>" class="back" alt="product image" style="height: 180px;"/>    
           </span>
         </a>
       </div>

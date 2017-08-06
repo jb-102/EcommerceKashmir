@@ -49,9 +49,9 @@
 
 
     <!-- PNotify -->
-    <link href="./allow_me/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
-    <link href="./allow_me/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
-    <link href="./allow_me/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+    <link href="./admin/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="./admin/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="./admin/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
     <!-- jQuery library -->
     <script src="js/jquery.min.js"></script>  
@@ -92,9 +92,9 @@
     <script src="js/bc.script7edd.js"></script>
 
     <!-- PNotify -->
-    <script src="./allow_me/vendors/pnotify/dist/pnotify.js"></script>
-    <script src="./allow_me/vendors/pnotify/dist/pnotify.buttons.js"></script>
-    <script src="./allow_me/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+    <script src="./admin/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="./admin/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="./admin/vendors/pnotify/dist/pnotify.nonblock.js"></script>
 
 </head>                                                  
 

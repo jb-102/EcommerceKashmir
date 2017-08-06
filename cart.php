@@ -1,6 +1,12 @@
 ﻿
 <!doctype html>
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    if(!isset($_SESSION['user'])){
+        echo "<script>alert('Please LogIn first!')</script>";
+        header('index.php');
+    }
+?>
 <!--[if IE 8]><html lang="en" class="ie8 js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="en" class="js">
@@ -219,7 +225,7 @@ include("inc/header.php");
 <?php
 	include("inc/db.php");
     $subTotal = 0;
-	$get_item_id = "select * from user_cart where user_email = 'jeel@gmail.com'";
+	$get_item_id = "select * from user_cart where user_email = '".$_SESSION['user']."'";
 	$run = mysqli_query($con , $get_item_id);
 	while($row = mysqli_fetch_array($run)) {
 		
@@ -248,7 +254,7 @@ include("inc/header.php");
               <button type="button" class="remove_from_cart" data-id="<?=$get_id?>" title="Remove"><i class="fa fa-trash-o"></i></button></td>
               <td class="item-image">
                 <a href="#">
-                	 <img src="admin/images/<?php echo "$get_product_img";?>" alt="image" style="width:100px; height:100px; ">
+                	 <img src="admin/images/items/ist_image/main/<?php echo "$get_product_img";?>" alt="image" style="width:100px; height:100px; ">
                 </a>
               </td>
               <td class="item-title">
