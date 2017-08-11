@@ -156,7 +156,7 @@
                                     <i class="fa fa-shopping-cart"></i>
                                     <span class="cart-icon"><span class="number"><?= $count; ?></span></span>
                                 </a>
-        <div class="cart-dd dropdown-menu">
+        <div class="cart-dd dropdown-menu" style="margin-left:-200px;width:285px;">
           <div id="cart-info">
             <h1>Your Cart</h1>
             <div id="cart-content" class="cart-content"><div class="items"><div class="items-inner">                                     
@@ -172,7 +172,6 @@
                </div>
             <div class="cart-item-price"><span class="money" data-currency-usd="$225.00" data-currency="USD">$225.00</span></div> 
             </div>
-            <a class="cart-close" href="javascript:;" data-cart-remove="1"><i class="fa fa-trash-o" title="Remove"></i></a>                                    </div>
             </div>
             <div class="subtotal"><span>Total</span><span class="cart-item-total-price"><span class="money" data-currency-usd="$225.00" data-currency="USD">$225.00</span></span>
             </div>
