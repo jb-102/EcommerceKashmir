@@ -158,7 +158,7 @@ include("inc/header.php");
 ?>
 
     <!-- End Header -->
-    <div id="body-content">
+    <div id="body-content" style="background: white;">
         <div class="container">
             <div class="row">
 
@@ -204,7 +204,7 @@ include("inc/header.php");
 
                         ?>
 
-                            <li><a href="#"><img src="admin/images/slider/<?php echo "$sliderimage";?>" alt="/" title="<?php echo "$slidertext";?>" id="wows1_0" /></a></li>
+                            <li><a href="#"><img src="admin/images/slider/<?php echo "$sliderimage";?>" alt="/" title="" id="wows1_0" /></a></li>
 
                         <?php
                             }
@@ -549,7 +549,7 @@ include("inc/footer.php");
 
 
         <div class="mailchimp-caption-1">
-            <span>Let them know what kind of content they will receive.</span>
+            <span>We will let you know if we have any new product coming.</span>
         </div>
 
 
@@ -560,9 +560,29 @@ include("inc/footer.php");
 
         <form id="mc-form" action="" method="post" name="mc-embedded-subscribe-form" target="_blank">
             <i class="fa fa-envelope"></i>
-            <input id="mc-email" class="input-block-level" type="email" name="EMAIL" placeholder="Your email..." required />
-            <button class="btn btn-default" type="submit">Submit</button>
+            <input id="mc-email" class="input-block-level" type="email" name="email" placeholder="Your email..." required />
+            <button class="btn btn-default" name="subscribe" type="submit">Submit</button>
         </form>
+<?php
+    include("inc/db.php");
+
+    if(isset($_POST['subscribe']))
+    {
+        $get_email = $_POST['email'];
+        $insert = "insert into subscription (sub_email) values('$get_email')";
+        $run = mysqli_query($con , $insert);
+        if($run)
+        {
+            echo "
+                <script>
+                    alert('You have successfully subscribe to our Newsletter');
+                </script>
+            ";
+        }
+    }
+
+?>
+
     </div>
 </div>
 

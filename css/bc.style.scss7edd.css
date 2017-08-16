@@ -379,7 +379,8 @@ to {
 }
 
     .header-content .header-top {
-        background-color: #f5f5f5;
+        background-color:#2ecc71;
+        color: white;
     }
 
         .header-content .header-top #tptnhtmlbox1 {
@@ -431,7 +432,7 @@ to {
             .header-content .customer-links .list-inline li a {
                 display: inline-block;
                 padding: 11px 14px;
-                background: #eee;
+                background: #2ecc71;
             }
 
                 .header-content .customer-links .list-inline li a .fa {
@@ -439,7 +440,7 @@ to {
                 }
 
                 .header-content .customer-links .list-inline li a:hover {
-                    background: #333;
+                    background: deepskyblue;
                     color: #fff;
                 }
 
@@ -539,7 +540,7 @@ to {
 
         .header-content .header-bottom .top-categ > span {
             display: block;
-            background: #2ac9bc;
+            background: #2ecc71;
             padding: 10px 15px;
             line-height: 25px;
             color: #fff;
@@ -1138,7 +1139,7 @@ to {
                     background: none;
                     width: 17px;
                     height: 17px;
-                    background: url(//cdn.shopify.com/s/files/1/1009/3778/t/2/assets/close.png?17961098776529469332) no-repeat;
+                    background: url('admin/images/close-icon.png') no-repeat;
                     z-index: 1;
                     cursor: pointer;
                 }
@@ -3541,7 +3542,7 @@ to {
             }
 
 #footer-content {
-    margin: 30px 0 0;
+    margin: 0px 0 0;
     background: #fff;
     color: #888;
     padding: 30px 0 0;

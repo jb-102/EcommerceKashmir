@@ -234,7 +234,7 @@ include("inc/header.php");
 	$get_product_info ="select * from products where item_id ='$get_id'";
 	$run1 = mysqli_query($con , $get_product_info);
 	$row1 = mysqli_fetch_array($run1); 
-		
+		$get_product_id = $row1['item_id'];
 	    $get_product_img = $row1['item_ist_view'];
 		$get_product_name = $row1['item_name'];
 		$get_product_price = $row1['item_price'];
@@ -253,12 +253,12 @@ include("inc/header.php");
               <td class="action">
               <button type="button" class="remove_from_cart" data-id="<?=$get_id?>" title="Remove"><i class="fa fa-trash-o"></i></button></td>
               <td class="item-image">
-                <a href="#">
+                <a href="SingleProductDetails.php?var_id=<?=$get_product_id?>">
                 	 <img src="admin/images/items/ist_image/main/<?php echo "$get_product_img";?>" alt="image" style="width:100px; height:100px; ">
                 </a>
               </td>
               <td class="item-title">
-                <a href="/products/hot-com-product-sample?variant=10631504707">
+                <a href="SingleProductDetails.php?var_id=<?=$get_product_id?>">
                   <span class="item-name"> <?php echo "$get_product_name"; ?> </span>
                 </a>
                 <p class="item-variant"> <span class="item-variant"></span></p>
@@ -309,7 +309,7 @@ $increment++;
               <div class="total-price">Subtotal: <span class="money" data-currency-usd="$2,025.00" data-currency="USD">&#8377;<span id="subTotal"><?=$subTotal?></span></span></div>
               <p>Shipping &amp; taxes calculated at checkout</p>
               <div class="cart-action">
-                <button class="btn btn-default" type="submit" name="checkout">Checkout</button>
+                <button class="btn btn-default" type="submit" name="checkout"><a href="checkout.php">Checkout</a></button>
                 <a href="/collections/all"><i class="fa fa-chevron-left left"></i>Continue Shopping</a>
               </div>
             </div>

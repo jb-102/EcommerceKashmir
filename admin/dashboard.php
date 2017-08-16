@@ -91,6 +91,8 @@
                   <li id="category_nav"><a class="link"><i class="fa fa-desktop"></i> Categories </a></li>
 
                   <li id="sub_category_nav"><a class="link"><i class="fa fa-table"></i> Sub Categories </a></li>
+                  
+                  <li id="edit_orders_nav"><a class="link"><i class="fa fa-table"></i> User Orders </a></li>
 
                   <li id="products_nav"><a class="link" ><i class="fa fa-bar-chart-o"></i> All Products </a></li>
 
@@ -262,6 +264,8 @@
                   </div>
                 </div>
               </div>
+
+
 
               <!-- content to add item to site -->
               <div class="row" id="item_div">
@@ -524,6 +528,31 @@
               </div>
             </div> 
 
+            
+
+
+ <!-- content to view orders -->
+            <div hidden  class="row" id="orders_div">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="x_panel">
+
+                  <div class="x_title">
+                    <h2>VIEW INCOMPLETE ORDERS</h2>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content" style="display: block;">
+                    <table id="orders_datatable-responsive" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0" width="100%">
+                    </table>  
+                  </div>
+
+                </div>
+
+              </div>
+            </div> 
+
             <!-- content to view orders -->
             <div hidden  class="row" id="orders_div">
 
@@ -545,6 +574,8 @@
 
               </div>
             </div> 
+            
+
 
             <!-- content to cancel orders -->
             <!-- <div hidden  class="row" id="cancel_requests_div">

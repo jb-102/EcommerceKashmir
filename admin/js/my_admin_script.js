@@ -1,4 +1,4 @@
-var initalized_slider,initalized_main_category,initalized_tiles,initalized_sub_category,initalized_category,initalized_card,initalized_products,initalized_cancel_requests,initalized_user_order_details;
+var initalized_slider,initalized_main_category,initalized_tiles,initalized_sub_category,initalized_category,initalized_orders,initalized_card,initalized_products,initalized_cancel_requests,initalized_user_order_details;
 
 var main_category_options,category_options,sub_category_options,cardDatatable,sliderDatatable,tilesDatatable,mainCategoryDatatable,categoryDatatable,subCategoryDatatable,productsDatatable,cancel_requestDatatable,on_home,user_detailsDatatable;
 
@@ -277,6 +277,31 @@ $("#products_nav").click(function(){
     $("#content_add").slideUp();
 });
 
+
+$("#edit_orders_nav").click(function(){
+
+    if (!initalized_orders) 
+    {
+      init_orders();
+      initalized_orders = true;
+    }
+    else
+    {
+      ordersDatatable.ajax.reload();
+    }
+
+    $(".link").removeClass('active');
+    $("#edit_orders_nav .link").addClass('active');
+    $("#orders_div").slideDown();
+    $("#user_order_details_div").slideUp();
+    $("#cancel_requests_div").slideUp();
+    $("#content_main").slideDown();
+    $("#category_div").slideUp();
+    $("#edit_card_div").slideUp();
+    $("#testimonials_div").slideUp();
+    $("#content_add").slideUp();
+});
+
 $("#edit_cancel_requests_nav").click(function(){
 
     if (!initalized_cancel_requests) 
@@ -481,6 +506,7 @@ function init_main_category(){
     });
 }
 
+
 function init_card(){
 
     cardDatatable =  $('#card_datatable-responsive').DataTable({
@@ -588,6 +614,7 @@ function init_card(){
     });
 }
 
+
 function init_tiles(){
 
     tilesDatatable = $('#tiles_datatable-responsive').DataTable({
@@ -625,6 +652,63 @@ function init_tiles(){
               text: 'Edit',
               name: 'edit'        // do not change name
             }
+          ]
+    });
+}
+
+
+
+function init_orders(){
+
+    ordersDatatable = $('#orders_datatable-responsive').DataTable({
+        dom: "Bfrtip",
+        ajax: "./php/get_orders_data.php",
+        columns: [
+            { 
+              title: "ORDER ID",
+              data: "order_id", 
+              type: "readonly"
+              
+            },
+            { 
+              title: "CUSTOMER NAME",
+              data: "user_name",
+              type: "readonly"
+            },
+            { 
+              title: "CUSTOMER EMAIL",
+              data: "user_email", 
+              type: "readonly"
+            },  
+            { 
+              title: "BILLING ADDRESS",
+              data: "billing_address",
+              type: "readonly"
+            },
+            { 
+              title: "SHIPPING ADDRESS",
+              data: "shipping_address",
+              type: "readonly"
+            },
+            { 
+              title: "ORDER DATE",
+              data: "order_date",
+              type: "readonly"
+            }
+        ],
+        order: [ 0, 'asc' ],
+        altEditor: true,
+        responsive: true,
+        select: {
+          style: 'os',
+          blurable: true
+        },
+         buttons: [
+            {
+              extend: 'selected', // Bind to Selected row
+              text: 'Complete Order',
+              name: 'generateInvoice'        // do not change name
+            },
           ]
     });
 }

@@ -13,11 +13,11 @@
                                     <ul class="list-links list-unstyled">
 
                                         <li>
-                                            <a href="index.html">Special</a>
+                                            <a href="index.html">Home</a>
                                         </li>
 
                                         <li>
-                                            <a href="index.html">Top sellers</a>
+                                            <a href="index.html">Collection</a>
                                         </li>
 
                                         <li>
@@ -26,10 +26,6 @@
 
                                         <li>
                                             <a href="pages/about-us.html">About Us</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="blogs/news.html">Blog</a>
                                         </li>
 
                                     </ul>
@@ -42,23 +38,19 @@
                                     <h4>Custom Block</h4>
                                     <ul class="list-links list-unstyled">
                                         <li>
-                                            <a href="account/login.html">Account</a>
+                                            <a href="account/login.html">Privacy Policy</a>
                                         </li>
 
                                         <li>
-                                            <a href="pages/wishlist.html">Wishlist</a>
+                                            <a href="pages/wishlist.html">Terms and Condition</a>
                                         </li>
 
                                         <li>
-                                            <a href="cart.html">Shopping Cart</a>
+                                            <a href="cart.html">Return Policy</a>
                                         </li>
 
                                         <li>
-                                            <a href="blogs/news.html">News</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="collections.html">Collections</a>
+                                            <a href="blogs/news.html">Register</a>
                                         </li>
 
                                     </ul>
@@ -92,12 +84,32 @@
                                         <li>Subscribe to our newsletter and receive the latest offers, discounts and updates</li>
 
 
-                                        <li>
-                                            <form action="http:/itcode.us10.list-manage.com/subscribe/post?u=55ec8b9611a3d9c0ad6f3fc62&amp;id=1cbb85b057" method="post" id="mc-embedded-subscribe-form" class="form-inline form-subscribe" name="mc-embedded-subscribe-form" target="_blank">
-                                                <input class="form-control" type="email" required placeholder="Enter your e-mail" name="EMAIL" id="email-input" />
-                                                <button id="email-submit" type="submit" title="Subscibe" class="btn btn-default btn-subscribe">Subscribe</button>
-                                            </form>
-                                        </li>
+                                    <li>
+                                        <form method="post" id="mc-embedded-subscribe-form" class="form-inline form-subscribe">
+                                            <input class="form-control" type="email" required placeholder="Enter your e-mail" name="email" id="email-input" />
+                                            <button id="email-submit" name="subscribe" type="submit" title="Subscibe" class="btn btn-default btn-subscribe">Subscribe</button>
+                                        </form>
+<?php
+    include("db.php");
+
+    if(isset($_POST['subscribe']))
+    {
+        $get_email = $_POST['email'];
+        $insert = "insert into subscription (sub_email) values('$get_email')";
+        $run = mysqli_query($con , $insert);
+        if($run)
+        {
+            echo "
+                <script>
+                    alert('You have successfully subscribe to our Newsletter');
+                </script>
+            ";
+        }
+    }
+
+?>
+
+                                    </li>
 
                                     </ul>
                                 </div>
@@ -107,6 +119,23 @@
                     </div>
                 </div>
                 <!-- End  Footer Top -->
+<div class="footer-top" style="border-top: 1px solid grey;">
+                    <div class="container">
+                        <div class="row">
+                            <div id="footer-info" class="col-md-12 col-sm-3 col-xs-6">
+                                <div class="footer-block">
+
+                                    <p>&nbsp;</p>
+                                   
+                                </div>
+                            </div>
+
+                           
+
+                        </div>
+                    </div>
+                </div>
+
 
                 <div id="checkLayout">
                     <span class="visible-xs-block"></span>

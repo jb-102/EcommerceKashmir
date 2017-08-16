@@ -6,7 +6,7 @@
             <div class="mobile-version visible-xs">
                 <div class="h-logo">
                     <a href="index.php" title="logo">
-                        <img class="mobile-logo visible-xs" src="../data1/images/lighthouse.jpg" alt="Megashop Theme" />
+                        <img class="mobile-logo visible-xs" src="../data1/images/lighthouse.jpg" alt="" />
                     </a>
                 </div>
             </div>
@@ -20,15 +20,14 @@
                         <div id="tptnhtmlbox1">
                             <ul class="tptnhtml1 list-unstyled">
                                 <li style="">Don't miss our Exclusive Offers on weekends</li>
-                                <li style="display: none;">Call Now: +0-123-456-7890 (10:00 - 18:30)</li>
-                                <li style="display: none;">Winter Collection for Women at 20% discount</li>
+                                <li style="display: none;">Call Now: +11111111111 (10:00 - 6:30)</li>
                             </ul>
                         </div>
 
 
                         <div class="wishlist-block-top">
                             <a href="my_account.php" title="Wishlist">
-                                <span>My Wishlist</span>
+                                <span style="color:white;">My Wishlist</span>
                             </a>
                         </div>
 
@@ -38,7 +37,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="header-logo col-sm-4 hidden-xs">
-                                <a href="index.php" title="Megashop Theme" class="logo-site">
+                                <a href="index.php" title="" class="logo-site">
 
                                     <img class="logo" src="logo.png" alt="" style="width: 175px" />
 
@@ -81,7 +80,7 @@
                                     <li>
                                         <a id="<?= $id; ?>">
                                         
-                                            <span><i class="<?= $icon; ?>"></i><?= $name; ?></span>
+                                            <span style="cursor: pointer;color:white;"><i class="<?= $icon; ?>"></i><?= $name; ?></span>
                                         </a>
 
 
@@ -95,7 +94,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="logo-stick col-md-3 hidden-sm hidden-xs">
-                                <a href="index.php" title="Megashop Theme" class="logo-site">
+                                <a href="index.php" title="" class="logo-site">
                                     <img class="logo" src="" alt="kashmir trend" />
                                 </a>
                             </div>
@@ -156,32 +155,69 @@
                                     <i class="fa fa-shopping-cart"></i>
                                     <span class="cart-icon"><span class="number"><?= $count; ?></span></span>
                                 </a>
-        <div class="cart-dd dropdown-menu" style="margin-left:-200px;width:285px;">
-          <div id="cart-info">
+    <div class="cart-dd dropdown-menu" style="margin-left:-200px;width:285px;">
+        <div id="cart-info">
             <h1>Your Cart</h1>
+
+
+<?php
+    include("inc/db.php");
+    $subTotal = 0;
+    $get_item_id = "select * from user_cart where user_email = '".$_SESSION['user']."'";
+    $run = mysqli_query($con , $get_item_id);
+    while($row = mysqli_fetch_array($run)) {
+        
+        $get_id = $row['item_id'];
+        $get_quantity = $row['total_quantity'];
+    $get_product_info ="select * from products where item_id ='$get_id'";
+    $run1 = mysqli_query($con , $get_product_info);
+    $row1 = mysqli_fetch_array($run1); 
+        
+        $get_product_img = $row1['item_ist_view'];
+        $get_product_name = $row1['item_name'];
+        $get_product_price = $row1['item_price'];
+        
+        $product_total = $get_product_price * $get_quantity ;
+        $increment =1 ;
+    
+?>
             <div id="cart-content" class="cart-content"><div class="items"><div class="items-inner">                                     
-            <div class="cart-item-image">        
-               <a href="/products/hot-com-product-sample?variant=10631504707"> 
-               <img src="https://cdn.shopify.com/s/files/1/1009/3778/products/p3_small.jpg" alt="">                                        
-               </a>
-            </div> 
+                <div class="cart-item-image">        
+                   <a href="/products/hot-com-product-sample?variant=10631504707"> 
+                   <img src="admin/images/items/2nd_image/main/<?php echo "$get_product_img";?>" alt="" style="width:100px;height:100px;">    
+                   </a>
+                </div> 
 
                <div class="cart-item-info">
-               <div class="cart-item-title">
-               <a href="/products/hot-com-product-sample?variant=10631504707">1<span class="x"> x </span>Hot Com Product Sample</a> 
-               </div>
-            <div class="cart-item-price"><span class="money" data-currency-usd="$225.00" data-currency="USD">$225.00</span></div> 
+                   <div class="cart-item-title">
+                        <a href="SingleProductDetails.php">1<span class="x"></span><?=$get_product_name?></a> 
+                   </div>
+                    <div class="cart-item-price"><span class="money" data-currency="USD"><?=$get_product_price?></span></div> 
             </div>
             </div>
-            <div class="subtotal"><span>Total</span><span class="cart-item-total-price"><span class="money" data-currency-usd="$225.00" data-currency="USD">$225.00</span></span>
-            </div>
-            <div class="action"><a href="cart.php" class="btn btn-default">View Cart</a><br><button class="btn btn-default" onclick="window.location.href='checkout.php'">Checkout</button>
-            </div>
-            </div>
+
+
+    </div>
           </div>
+<?php
+    $subTotal += $product_total;
+    $increment++;
+    }
+?>
+
+<div class="subtotal"><span>Total</span><span class="cart-item-total-price">
+    <span class="money" data-currency-usd="$225.00" data-currency="USD"><?=$product_total?></span>
+</span>
+</div>
+<div class="action">
+                <a href="cart.php" class="btn btn-default">View Cart</a><br>
+                <button class="btn btn-default" onclick="window.location.href='checkout.php'">Checkout</button>
+</div>
+
+
         </div>
                                
-                            </div>
+    </div>
 
                         </div>
                     </div>
