@@ -200,6 +200,7 @@ $("#main_category_nav").click(function(){
     $("#user_order_details_div").slideUp();
     $("#category_div").slideDown();
     $("#edit_item_div").slideUp();
+    $("#products_div").slideUp();
     $("#testimonials_div").slideUp();
     $("#content_add").slideUp();
     $("#cancel_requests_div").slideUp();
@@ -222,6 +223,7 @@ $("#category_nav").click(function(){
     $("#content_main").slideDown();
     $("#user_order_details_div").slideUp();
     $("#orders_div").slideUp();
+    $("#products_div").slideUp();
     $("#category_div").slideUp();
     $("#cancel_requests_div").slideUp();
     $("#edit_item_div").slideDown();
@@ -244,6 +246,7 @@ $("#sub_category_nav").click(function(){
     $(".link").removeClass('active');
     $("#sub_category_nav .link").addClass('active');
     $("#content_main").slideDown();
+    $("#products_div").slideUp();
     $("#user_order_details_div").slideUp();
     $("#orders_div").slideUp();
     $("#category_div").slideUp();
@@ -267,16 +270,16 @@ $("#products_nav").click(function(){
 
     $(".link").removeClass('active');
     $("#products_nav .link").addClass('active');
-    $("#orders_div").slideDown();
+    $("#products_div").slideDown();
     $("#user_order_details_div").slideUp();
     $("#cancel_requests_div").slideUp();
+    $("#orders_div").slideUp();
     $("#content_main").slideDown();
     $("#category_div").slideUp();
     $("#edit_item_div").slideUp();
     $("#testimonials_div").slideUp();
     $("#content_add").slideUp();
 });
-
 
 $("#edit_orders_nav").click(function(){
 
@@ -293,6 +296,7 @@ $("#edit_orders_nav").click(function(){
     $(".link").removeClass('active');
     $("#edit_orders_nav .link").addClass('active');
     $("#orders_div").slideDown();
+    $("#products_div").slideUp();
     $("#user_order_details_div").slideUp();
     $("#cancel_requests_div").slideUp();
     $("#content_main").slideDown();
@@ -301,54 +305,7 @@ $("#edit_orders_nav").click(function(){
     $("#testimonials_div").slideUp();
     $("#content_add").slideUp();
 });
-
-$("#edit_cancel_requests_nav").click(function(){
-
-    if (!initalized_cancel_requests) 
-    {
-      init_cancel_requests();
-      initalized_cancel_requests = true;
-    }
-    else
-    {
-      cancel_requestDatatable.ajax.reload();
-    }
-
-    $(".link").removeClass('active');
-    $("#edit_cancel_requests_nav .link").addClass('active');
-    $("#cancel_requests_div").slideDown();
-    $("#user_order_details_div").slideUp();
-    $("#orders_div").slideUp();
-    $("#content_main").slideDown();
-    $("#category_div").slideUp();
-    $("#edit_item_div").slideUp();
-    $("#testimonials_div").slideUp();
-    $("#content_add").slideUp();
-});  
-
-$("#edit_user_order_details_nav").click(function(){
-
-    if (!initalized_user_order_details) 
-    {
-      init_user_order_details();
-      initalized_user_order_details = true;
-    }
-    else
-    {
-      user_detailsDatatable.ajax.reload();
-    }
-
-    $(".link").removeClass('active');
-    $("#edit_user_order_details_nav .link").addClass('active');
-    $("#user_order_details_div").slideDown();
-    $("#orders_div").slideUp();
-    $("#cancel_requests_div").slideUp();
-    $("#content_main").slideDown();
-    $("#category_div").slideUp();
-    $("#edit_item_div").slideUp();
-    $("#testimonials_div").slideUp();
-    $("#content_add").slideUp();
-});  
+ 
 
 $("#logout_button").click(function(){
     $.post('./php/admin_sessions.php',{admin:'logout'}).done(function(data){
@@ -449,6 +406,10 @@ function init_slider(){
         },
          buttons: [
             {
+              text: 'Add',
+              name: 'add'        // do not change name
+            },
+            {
               extend: 'selected', // Bind to Selected row
               text: 'Edit',
               name: 'edit'        // do not change name
@@ -506,115 +467,6 @@ function init_main_category(){
     });
 }
 
-
-function init_card(){
-
-    cardDatatable =  $('#card_datatable-responsive').DataTable({
-        dom: "Bfrtip",
-        ajax: "./php/get_card_data.php",
-        columns: [  
-            {
-              title: "CARD ID",
-              data: "card_id",
-              type: "readonly"
-            },
-            { 
-              title: "CARD NAME",
-              data: "card_name",
-              type: "text"
-            },
-            { 
-              title: "CARD DESCRIPTION",
-              data: "card_description", 
-              type: "txtarea"
-            },
-            { 
-              title: "CARD PRICE",
-              data: "card_price",
-              type: "text"
-            },
-            { 
-              title: "CARD CATEGORY",
-              data: "card_category",
-              type: "select",
-              options: is_category
-            },
-            { 
-              title: "MAIN IMAGE",
-              data: "main_image", 
-              type: "file"
-            },
-            { 
-              title: "FRONT IMAGE",
-              data: "front_image", 
-              type: "file"
-            },
-            { 
-              title: "CONTENT IMAGE",
-              data: "content_image", 
-              type: "file"
-            },
-            { 
-              title: "BACK IMAGE",
-              data: "back_image", 
-              type: "file"
-            },
-            { 
-              title: "CARD ON HOME",
-              data: "on_home", 
-              type: "select",
-              options: on_home
-            },
-            { 
-              title: "LATEST",
-              data: "is_latest", 
-              type: "select",
-              options: is_latest
-            },
-            { 
-              title: "PAPER TYPE",
-              data: "paper_type", 
-              type: "text"
-            },
-            { 
-              title: "COLOR",
-              data: "color", 
-              type: "text"
-            },
-            { 
-              title: "HEIGHT",
-              data: "height", 
-              type: "text"
-            },
-            { 
-              title: "WIDTH",
-              data: "width", 
-              type: "text",
-            }
-        ],
-        order: [ 0, 'asc' ],
-        altEditor: true,
-        responsive: true,
-        select: {
-          style: 'os',
-          blurable: true
-        },
-         buttons: [
-          {
-            extend: 'selected', // Bind to Selected row
-            text: 'Edit',
-            name: 'edit'        // do not change name
-          },
-          {
-            extend: 'selected', // Bind to Selected row
-            text: 'Delete',
-            name: 'delete'        // do not change name
-          }
-        ]
-    });
-}
-
-
 function init_tiles(){
 
     tilesDatatable = $('#tiles_datatable-responsive').DataTable({
@@ -655,8 +507,6 @@ function init_tiles(){
           ]
     });
 }
-
-
 
 function init_orders(){
 
@@ -703,13 +553,7 @@ function init_orders(){
           style: 'os',
           blurable: true
         },
-         buttons: [
-            {
-              extend: 'selected', // Bind to Selected row
-              text: 'Complete Order',
-              name: 'generateInvoice'        // do not change name
-            },
-          ]
+        buttons: []
     });
 }
 
@@ -931,180 +775,6 @@ function init_products(){
             name: 'delete'        // do not change name
           }
         ]
-    });
-}
-
-function init_cancel_requests(){
-
-    cancel_requestDatatable = $('#cancel_requests_datatable-responsive').DataTable({
-        dom: "Bfrtip",
-        ajax: "./php/get_cancel_requests_data.php",
-        columns: [
-            { 
-              title: "ORDER ID",
-              data: "order_id", 
-              type: "readonly"
-            },
-            { 
-              title: "CUSTOMER NAME",
-              data: "user_name",
-              type: "readonly"
-            },
-            { 
-              title: "CUSTOMER EMAIL",
-              data: "user_email", 
-              type: "readonly"
-            },  
-            { 
-              title: "BILLING ADDRESS",
-              data: "billing_address",
-              type: "readonly"
-            },
-            { 
-              title: "SHIPPING ADDRESS",
-              data: "shipping_address",
-              type: "readonly"
-            },
-            { 
-              title: "ORDER DATE",
-              data: "order_date",
-              type: "readonly"
-            }
-        ],
-        order: [ 0, 'asc' ],
-        altEditor: true,
-        responsive: true,
-        select: {
-          style: 'os',
-          blurable: true
-        },
-         buttons: [
-            {
-              extend: 'selected', // Bind to Selected row
-              text: 'Confirm Cancellation',
-              name: 'cancelOrder'        // do not change name
-            },
-          ]
-    });
-}
-
-function init_user_order_details(){
-
-    user_detailsDatatable = $('#user_order_details_datatable-responsive').DataTable({
-        dom: "Bfrtip",
-        ajax: "./php/get_user_order_details.php",
-        columns: [
-            { 
-              title: "ORDER ID",
-              data: "order_id", 
-              type: "readonly"
-            },
-            { 
-              title: "MR & MRS",
-              data: "mr_mrs",
-              type: "readonly"
-            },
-            { 
-              title: "RELATION",
-              data: "relation", 
-              type: "readonly"
-            },  
-            { 
-              title: "COUPLES",
-              data: "couples",
-              type: "readonly"
-            },
-            { 
-              title: "IN-LAW MR & MRS",
-              data: "in_law_mr_mrs",
-              type: "readonly"
-            },
-            { 
-              title: "RESIDENCE",
-              data: "residence",
-              type: "readonly"
-            },
-            { 
-              title: "FUNCTIONS",
-              data: "functions",
-              type: "readonly"
-            },
-            { 
-              title: "R.S.V.P",
-              data: "rsvp",
-              type: "readonly"
-            },
-            { 
-              title: "BEST COMPLIMENTS",
-              data: "compliments",
-              type: "readonly"
-            },
-            {
-                title: "LABELS FILE",
-                "mData": "labels_file",
-                "bSortable": false,
-                "mRender": function(data) {
-                  if(data != null)
-                  {
-                    return '<a class="btn btn-dark btn-sm" href= "./labels/' + data + '">' + 'View' + '</a>';
-                  }
-                  else
-                  {
-                    return 'NO DATA';
-                  }
-                }
-            },
-            {
-                title: "ORDER DETAILS FILE",
-                "mData": "full_order_details",
-                "bSortable": false,
-                "mRender": function(data) {
-                  if(data != null)
-                  {
-                    return '<a class="btn btn-dark btn-sm" href= "./pdf/order_details/' + data + '">' + 'View' + '</a>';
-                  }
-                  else
-                  {
-                    return 'NO DATA';
-                  }
-                }
-            },
-            {
-                title: "CARD DETAILS FILE",
-                "mData": "full_card_details",
-                "bSortable": false,
-                "mRender": function(data) {
-                  if(data != null)
-                  {
-                    return '<a class="btn btn-dark btn-sm" href= "./pdf/order_details/' + data + '">' + 'View' + '</a>';
-                  }
-                  else
-                  {
-                    return 'NO DATA';
-                  }
-                }
-            }
-
-        ],
-        order: [ 0, 'asc' ],
-        altEditor: true,
-        responsive: true,
-        select: {
-          style: 'os',
-          blurable: true
-        },
-         buttons: [
-            {
-              extend: 'selected', // Bind to Selected row
-              text: 'Generate full details pdf',
-              name: 'generateFullDetails'        // do not change name
-            },
-            {
-              extend: 'selected', // Bind to Selected row
-              text: 'Generate card details pdf',
-              name: 'generateCardDetails'        // do not change name
-            }
-          ]
     });
 }
 

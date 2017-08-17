@@ -539,7 +539,7 @@
                 <div class="x_panel">
 
                   <div class="x_title">
-                    <h2>VIEW INCOMPLETE ORDERS</h2>
+                    <h2>VIEW ORDERS</h2>
                     <div class="clearfix"></div>
                   </div>
 
@@ -554,7 +554,7 @@
             </div> 
 
             <!-- content to view orders -->
-            <div hidden  class="row" id="orders_div">
+            <div hidden  class="row" id="products_div">
 
               <div class="col-md-12 col-sm-12 col-xs-12">
 
@@ -575,51 +575,6 @@
               </div>
             </div> 
             
-
-
-            <!-- content to cancel orders -->
-            <!-- <div hidden  class="row" id="cancel_requests_div">
-
-              <div class="col-md-12 col-sm-12 col-xs-12">
-
-                <div class="x_panel">
-
-                  <div class="x_title">
-                    <h2>VIEW CANCEL ORDER REQUESTS</h2>
-                    <div class="clearfix"></div>
-                  </div>
-
-                  <div class="x_content" style="display: block;">
-                    <table id="cancel_requests_datatable-responsive" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0" width="100%">
-                    </table>  
-                  </div>
-
-                </div>
-
-              </div>
-            </div> -->
-
-            <!-- content to order details -->
-            <!-- <div hidden  class="row" id="user_order_details_div">
-
-              <div class="col-md-12 col-sm-12 col-xs-12">
-
-                <div class="x_panel">
-
-                  <div class="x_title">
-                    <h2>VIEW USER CARD DETAILS</h2>
-                    <div class="clearfix"></div>
-                  </div>
-
-                  <div class="x_content" style="display: block;">
-                    <table id="user_order_details_datatable-responsive" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0" width="100%">
-                    </table>  
-                  </div>
-
-                </div>
-
-              </div>
-            </div>  -->
         </div>
 
       </div>
