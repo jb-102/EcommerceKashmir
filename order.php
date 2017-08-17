@@ -7,9 +7,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Checkout Page</title>
-
-
+  
+  <meta name="description" content="kashmirtrends.com is a kashmir based ecommerce website.The Best Online Shopping Site for Kashmiri Products. " />
+<meta name="keywords" content="kashmirtrends.com, kashmirtrend.com, kashmirtrends, kashmirtrend, estore ,  sports , electronics , kiryana , regular food items , baby care and toys , hardware , cleaning supplies , grocery and staples , non-veg items, clothes, cheap clothes, kashmir art, camera" />
+<title>:: Welcome to Kashmirtrends.com , clothes , jeans , grocery , kashmir art , cosmetics ::</title>
   
   <!-- Font awesome -->
     <link href="css/font-awesome.css" rel="stylesheet">

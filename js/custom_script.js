@@ -44,7 +44,7 @@ $(document).ready(function() {
     // the value contains the file path, so we can pop the extension
     var fileExtension = value.split('.').pop();
     var extent = requirement.split(" ");
-
+    
     return fileExtension === extent[0] || fileExtension === extent[1] || fileExtension === extent[2] || fileExtension === extent[3] || fileExtension === extent[4] || fileExtension === extent[5];
   }, 32).addMessage('en', 'fileextension', 'The extension doesn\'t match the required');
 
@@ -593,7 +593,6 @@ $("#update_account_details").on('click',function(){
 });
 
 $("#open_cart_dialog").on("click", function () {
-  alert('inside get item');
   var send_id = $(this).data('id'); 
      
   $.post('cartDialog.php',{prod_id:send_id},function(data){

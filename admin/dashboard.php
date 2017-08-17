@@ -22,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>JEEL ECOM | Admin</title>
+    <title>Kashmir Trends Admin</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="#" class="site_title"><i class="fa fa-paw"></i> <span>JEEL ECOM</span></a>
+              <a href="#" class="site_title"><i class="fa fa-paw"></i> <span>Kashmir Trends</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -67,7 +67,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="../logo.png" alt="..." class="img-circle profile_img" style="width:70px; height: 60px;">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -102,14 +102,7 @@
                 </ul>
               </div>
               <div class="menu_section">
-                <h3>ADMIN SETTING</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Admin Profile </a></li>
-
-                  <li><a><i class="fa fa-windows"></i> Messages </a></li>
-
-                  <li><a><i class="fa fa-sitemap"></i> Site Profile </span></a></li>                  
-                </ul>
+                
               </div>
 
             </div>
@@ -117,16 +110,7 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout">
+              <a data-toggle="tooltip" id="logout_button" data-placement="top" title="Logout">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -145,11 +129,10 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">Administrator
+                    <img src="../logo.png" alt="" style="width:40px;height:30px;">Administrator
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a> Profile</a></li>
                     <li><a id="logout_button" ><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
@@ -171,7 +154,19 @@
                   <div class="icon"><i class="fa fa-plus-square"></i>
                   </div>
                   
-                  <div class="count">389</div>
+<?php 
+  $get_slider_count = "SELECT slider_id FROM `slider`";
+  $run = mysqli_query($conn, $get_slider_count);
+  
+  while ($row = mysqli_fetch_array($run)) {
+      $slider_count = $row['slider_id']  ;
+              
+  }
+
+
+?>
+
+                  <div class="count"><?=$slider_count?></div>
                   
                   <h3>EDIT SLIDER</h3>
                   
@@ -183,8 +178,18 @@
                 <div id="add_tile" class="tile-stats">
                   <div class="icon"><i class="fa fa-plus-square"></i>
                   </div>
-                    
-                  <div class="count">389</div>
+ <?php 
+  $get_tile_count = "SELECT tile_id FROM `tiles`";
+  $run = mysqli_query($conn, $get_tile_count);
+  
+  while ($row = mysqli_fetch_array($run)) {
+      $tile_count = $row['tile_id']  ;
+              
+  }
+
+
+?>                   
+                  <div class="count"><?=$tile_count?></div>
 
                   <h3>EDIT TILES</h3>
                   
@@ -196,8 +201,18 @@
                 <div id="add_item" class="tile-stats">
                   <div class="icon"><i class="fa fa-plus-square"></i>
                   </div>
-                  
-                  <div class="count">389</div>
+ <?php 
+  $get_product_count = "SELECT item_id FROM `products`";
+  $run = mysqli_query($conn, $get_product_count);
+  
+  while ($row = mysqli_fetch_array($run)) {
+      $product_count = $row['item_id']  ;
+              
+  }
+
+
+?>                    
+                  <div class="count"><?=$product_count?></div>
                   
                   <h3>ADD PRODUCT</h3>
                   
@@ -209,8 +224,18 @@
                 <div id="add_main_category" class="tile-stats">
                   <div class="icon"><i class="fa fa-plus-square"></i>
                   </div>
-                  
-                  <div class="count">389</div>
+<?php 
+  $get_maincategory = "SELECT main_cat_id FROM `main_categories`";
+  $run = mysqli_query($conn, $get_maincategory);
+  
+  while ($row = mysqli_fetch_array($run)) {
+      $maincategory = $row['main_cat_id']  ;
+              
+  }
+  
+?>
+
+                  <div class="count"><?=$maincategory?></div>
                   
                   <h3>ADD MAIN CAT</h3>
                   
@@ -585,7 +610,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Ecommerce - Admin Template by <a href="https://ivtectsolutions.in">IV TECH SOLUTIONS</a>
+            Kashmir Trends Admin <a href="https://ivtectsolutions.in">by : IV TECH SOFTWARE SOLUTIONS</a>
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -11,7 +11,10 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<link rel="canonical" href="index.html" />
+<link rel="canonical" href="index.php" />
+
+<meta name="description" content="kashmirtrends.com is a kashmir based ecommerce website.The Best Online Shopping Site for Kashmiri Products. " />
+<meta name="keywords" content="kashmirtrends.com, kashmirtrend.com, kashmirtrends, kashmirtrend, estore ,  sports , electronics , kiryana , regular food items , baby care and toys , hardware , cleaning supplies , grocery and staples , non-veg items, clothes, cheap clothes, kashmir art, camera" />
 
 <meta name="description" content="" />
 <title>:: Welcome to ecommerce website ::</title>

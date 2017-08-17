@@ -27,7 +27,7 @@
 
                         <div class="wishlist-block-top">
                             <a href="my_account.php" title="Wishlist">
-                                <span style="color:white;">My Wishlist</span>
+                                <span style="color:white;"><i class="fa fa-heart"></i> &nbsp;My Wishlist</span>
                             </a>
                         </div>
 
