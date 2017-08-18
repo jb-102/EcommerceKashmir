@@ -104,6 +104,57 @@
                  echo 'Atleat 3 should be published!';
             }
 
+        } else if ($_POST['action'] == 'add') {
+
+            $slider_text = $_POST['slider_text'];
+            $slider_image = $_FILES['slider_image'];
+            $slider_status = $_POST['slider_status'];
+            $target_dir = "../images/slider/";
+                                
+            // saving and retrieving image path from database
+            $target_path = basename($slider_image['name']); 
+            $target_file = $target_dir . basename($slider_image['name']);
+
+            $imageFileType = pathinfo($target_path,PATHINFO_EXTENSION);
+            $check = getimagesize($slider_image["tmp_name"]);
+
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
+                
+                echo 'Please upload an image (jpg or png only).';
+            }
+            else if ($check[0] != 960 || $check[1] != 400 ) {
+
+                echo 'Please upload an image of dimentions 960*400.';
+            }
+            else if (file_exists($target_file)) {
+
+                $sql = "INSERT into slider (slider_text,slider_image,slider_status) VALUES ('$slider_text','$target_path','slider_status')";
+
+
+                if ($conn->query($sql) === TRUE) {
+
+                    echo "success";
+
+                } else {
+                    echo 'failed to updated.'.$conn->error;
+                }
+
+            }
+            else if (move_uploaded_file($slider_image["tmp_name"], $target_file)) 
+            {
+                $sql = "INSERT into slider (slider_text,slider_image,slider_status) VALUES ('$slider_text','$target_path','slider_status')";
+
+                if ($conn->query($sql) === TRUE) {
+
+                    echo "success";
+
+                } else {
+                    echo 'failed to updated.'.$conn->error;
+                }
+            }
+            else
+            {
+            echo 'Sorry, there was an error uploading your file.';
         }
         
     }
