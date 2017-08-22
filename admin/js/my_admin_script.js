@@ -392,6 +392,7 @@ function init_slider(){
               data: "slider_status",
               type:  "select",
               options: [
+                  { label: "Select", value: "-1" },
                   { label: "published", value: "published" },
                   { label: "unpublished", value: "unpublished" } 
                 ]
@@ -751,6 +752,7 @@ function init_products(){
               data: "is_popular", 
               type: "select",
               options: [
+                  { label: "Select", value: "-1" },
                   { label: "yes", value: "yes" },
                   { label: "no", value: "no" } 
                 ]

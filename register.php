@@ -258,7 +258,7 @@ include("inc/header.php");
             <input type="password" value="" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required class="col-sm-10 col-xs-12 password" />
           </div>
           <div class="control-wrapper last">
-            <button id="create_account" class="btn btn-default" ><i class="fa fa-user left"></i>Create An Account</button>
+            <a id="create_account" class="btn btn-default" ><i class="fa fa-user left"></i>Create An Account</a>
           </div>
         </div>
         </form>

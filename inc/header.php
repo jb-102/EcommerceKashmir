@@ -156,31 +156,31 @@
                                     <span class="cart-icon"><span class="number"><?= $count; ?></span></span>
                                 </a>
     <div class="cart-dd dropdown-menu" style="margin-left:-200px;width:285px;">
-        <div id="cart-info">
+      <div id="cart-info">
             <h1>Your Cart</h1>
 
 
-<?php
-    include("inc/db.php");
-    $subTotal = 0;
-    $get_item_id = "select * from user_cart where user_email = '".$_SESSION['user']."'";
-    $run = mysqli_query($con , $get_item_id);
-    while($row = mysqli_fetch_array($run)) {
-        
-        $get_id = $row['item_id'];
-        $get_quantity = $row['total_quantity'];
-    $get_product_info ="select * from products where item_id ='$get_id'";
-    $run1 = mysqli_query($con , $get_product_info);
-    $row1 = mysqli_fetch_array($run1); 
-        
-        $get_product_img = $row1['item_ist_view'];
-        $get_product_name = $row1['item_name'];
-        $get_product_price = $row1['item_price'];
-        
-        $product_total = $get_product_price * $get_quantity ;
-        $increment =1 ;
-    
-?>
+        <?php
+            include("inc/db.php");
+            $subTotal = 0;
+            $get_item_id = "select * from user_cart where user_email = '".$_SESSION['user']."'";
+            $run = mysqli_query($con , $get_item_id);
+            while($row = mysqli_fetch_array($run)) {
+                
+                $get_id = $row['item_id'];
+                $get_quantity = $row['total_quantity'];
+            $get_product_info ="select * from products where item_id ='$get_id'";
+            $run1 = mysqli_query($con , $get_product_info);
+            $row1 = mysqli_fetch_array($run1); 
+                
+                $get_product_img = $row1['item_ist_view'];
+                $get_product_name = $row1['item_name'];
+                $get_product_price = $row1['item_price'];
+                
+                $product_total = $get_product_price * $get_quantity ;
+                $increment =1 ;
+            
+        ?>
             <div id="cart-content" class="cart-content"><div class="items"><div class="items-inner">                                     
                 <div class="cart-item-image">        
                    <a href="/products/hot-com-product-sample?variant=10631504707"> 
@@ -195,28 +195,25 @@
                     <div class="cart-item-price"><span class="money" data-currency="USD"><?=$get_product_price?></span></div> 
             </div>
             </div>
-
-
-    </div>
-          </div>
-<?php
-    $subTotal += $product_total;
-    $increment++;
-    }
-?>
-
-<div class="subtotal"><span>Total</span><span class="cart-item-total-price">
-    <span class="money" data-currency-usd="$225.00" data-currency="USD"><?=$product_total?></span>
-</span>
-</div>
-<div class="action">
-                <a href="cart.php" class="btn btn-default">View Cart</a><br>
-                <button class="btn btn-default" onclick="window.location.href='checkout.php'">Checkout</button>
-</div>
-
-
         </div>
-                               
+          </div>
+        <?php
+            $subTotal += $product_total;
+            $increment++;
+            }
+        ?>
+
+        <div class="subtotal"><span>Total</span><span class="cart-item-total-price">
+            <span class="money" data-currency-usd="$225.00" data-currency="USD"><?=$product_total?></span>
+        </span>
+        </div>
+        <div class="action">
+                        <a href="cart.php" class="btn btn-default">View Cart</a><br>
+                        <button class="btn btn-default" onclick="window.location.href='checkout.php'">Checkout</button>
+        </div>
+
+
+                </div>                               
     </div>
 
                         </div>

@@ -13,6 +13,7 @@
   if ($_POST['from'] == 'login') {
     # code
 
+    $status = fasle;
     $sql = "SELECT * FROM user_credentials";
 
         $result = $conn -> query($sql);
@@ -20,6 +21,7 @@
         while ($row = $result -> fetch_assoc()) {
 
             if ($_POST['email'] == $row['user_email'] && $_POST['password'] == $row['user_password']) {
+                $status = $row['status']
                 $found = true;
                 break;
             }
@@ -27,11 +29,13 @@
         }
 
         if ($found) {
-            # code...
+          if($status == 1) {
             echo "success";
+          } else {
+            echo "Please activate your account first!";
+          }
         }
         else {
-            # code...
             echo "Incorrect email or password!";
         }
   }
@@ -44,15 +48,36 @@
 
       $password = $_POST['password'];
 
-      $sql = "INSERT INTO user_credentials (user_name,user_email,user_password) VALUES ('$fullname','$email','$password')";
+      $sql = "SELECT * FROM user_credentials";
 
-      if ($conn->query($sql) === TRUE) {
-        echo "success";
+      $result = $conn -> query($sql);
+
+      while ($row = $result -> fetch_assoc()) {
+
+          if ($_POST['email'] == $row['user_email'] && $_POST['password'] == $row['user_password']) {
+              $found = true;
+              break;
+          }
+
       }
-      else
-      {
-        echo "sorry, unable to register now, try later";
-      }     
+
+
+      if ($found) {
+        $sql = "INSERT INTO user_credentials (user_name,user_email,user_password) VALUES ('$fullname','$email','$password')";
+
+        if ($conn->query($sql) === TRUE) {
+          mail($row['admin_email'], "Activation link from Kashmir Trend", "Your Activation link is : http://localhost/Ecommercekashmir/activate?id=$email\r\n \r\n \r\n \r\n Please don't reply to this system generated email.", "From: contact@kashmirtrends.com");
+          echo "success";
+        }
+        else
+        {
+          echo "Sorry, unable to register now, try later";
+        }     
+      } else {
+        echo "You are already registered. Please login!";
+      }
+
+      
   }
   elseif ($_POST['from'] == 'gmail') {
 

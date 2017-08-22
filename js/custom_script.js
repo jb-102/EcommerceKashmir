@@ -268,14 +268,15 @@ $('.add-to-wishlist').click(function() {
 $("#create_account").click(function(){
 
 
-  var formData = $("#register-form").serializeArray();
+  var formData = $("#register-form").serializeArray();  
+  console.log(JSON.stringify(formData))
   $.post(url, formData).done(function (data) {
 
     if ($.trim(data) == 'success') 
     {
       $.post(session_url, {user:"main",email:formData[1].value}).done(function (session_data) {
 
-        if ($.trim($.trim(session_data)) == 'success') 
+        if ($.trim(session_data) == 'success') 
         {
           window.location = 'index.php';
         }
@@ -592,9 +593,9 @@ $("#update_account_details").on('click',function(){
 
 });
 
-$("#open_cart_dialog").on("click", function () {
+$(".open_cart_dialog").on("click", function () {
   var send_id = $(this).data('id'); 
-     
+     alert(send_id)
   $.post('cartDialog.php',{prod_id:send_id},function(data){
       data = JSON.parse(data);
       console.log(data.item_name);
@@ -603,6 +604,8 @@ $("#open_cart_dialog").on("click", function () {
       $("#qs-product-description").text(data.item_desc);
       $("#qs-product-type").text(data.item_main_category);
       $("#qs-product-price").text(data.item_price);
+      $("#qs-add-cart").data('id',send_id);
+      
 
   });
 });

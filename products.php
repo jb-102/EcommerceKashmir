@@ -312,19 +312,19 @@ include("inc/mobileversion.php");
       </div>
 
   <div class="product-button">
-                    <div class="add-cart-button">
-                        <a href="products/golddax-product-example.html" class="btn btn-default select-options" title="Select options"><i class="fa fa-shopping-cart"></i><span class="hidden-desktop">Select options</span></a>
-                    </div>
-                    <div data-handle="golddax-product-example" data-target="#quick-shop-popup" class="quick_shop quick-shop-button btn-default hidden-sm hidden-xs" data-toggle="modal" title="Quick View">
-                        <i class="fa fa-expand"></i>
-                        <span class="json hide">
-                            
-                        </span>
-                    </div>
-                    <div class="product-wishlist">
-                        <button type="button" class="btn btn-default add-to-wishlist" onclick="window.location='account/login.html'" title="Add to wishlist"><i class="fa fa-heart"></i><span class="hidden-desktop">Add to wishlist</span></button>
-                    </div>
-                </div>
+        <div class="add-cart-button">
+            <a data-id="<?= $productid?>" class="btn btn-default add_toCart select-options" title="Select options"><i  class="fa fa-shopping-cart"></i><span  class="hidden-desktop">Select options</span></a>
+        </div>
+
+        <div data-handle="golddax-product-example" data-id = "<?= $productid;?>" data-target="#quick-shop-popup" class="open_cart_dialog" class="quick_shop quick-shop-button btn-default hidden-sm hidden-xs" data-toggle="modal" title="Quick View">
+            <i class="fa fa-expand"></i>
+            <span class="json hide">
+                
+            </span>
+        </div>
+        <div class="product-wishlist">
+            <button data-id="<?= $productid?>" type="button" class="btn btn-default add-to-wishlist" title="Add to wishlist"><i class="fa fa-heart"></i><span class="hidden-desktop">Add to wishlist</span></button>
+        </div>
 
     </div>
 
